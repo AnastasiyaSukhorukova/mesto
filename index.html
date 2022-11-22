@@ -7,19 +7,83 @@
   <title>Mesto</title>
 </head>
 
-<body class="page">
+<body class="page page__position">
 
-  <header class="header header__position">
+  <header class="header">
     <div class="logo"></div>
-    <div class="line"></div>
+    <div class="header__line"></div>
   </header>
 
   <main>
 
+    <section class="profile">
+      <img class="avatar" src="./images/avatar.png" alt="Аватар">
+      <div class="profile__intro">
+        <div class="profile__name">
+          <h1 class="profile__intro-title">Жак-Ив Кусто</h1>
+          <p class="profile__intro-subtitle">Исследователь океана</p>
+        </div>
+        <button class="button button__edit"> <img src="./images/correct.png" alt="Редактировать профиль"> </button>
+      </div>
+      <button class="button button__add"> <img src="./images/add.png" alt="Добавить новые фото"> </button>
+    </section>
+
+    <section class="elements">
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаевск">
+        <div class="element__item">
+          <h2 class="element__title">Карачаевск</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1404681-unsplash (1).png" alt="Гора Эльбрус">
+        <div class="element__item">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+        <div class="element__item">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1404681-unsplash (1).png" alt="Гора Эльбрус">
+        <div class="element__item">
+          <h2 class="element__title">Гора Эльбрус</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1556355-unsplash.png" alt="Домбай">
+        <div class="element__item">
+          <h2 class="element__title">Домбай</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+      <article class="element">
+        <img class="element__image" src="./images/kirill-pershin-1088404-unsplash.png" alt="Карачаево-Черкессия">
+        <div class="element__item">
+          <h2 class="element__title">Карачаево-Черкессия</h2>
+          <button class="element__like element__like_active"></button>
+        </div>
+      </article>
+
+    </section>
+
   </main>
 
   <footer>
-
+    <p class="footer">© 2022 Mesto Russia</p>
   </footer>
 
 </body>

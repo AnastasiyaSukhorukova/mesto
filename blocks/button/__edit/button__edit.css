@@ -1,0 +1,14 @@
+.button__edit {
+    margin: 15px 0 34px 18px;
+    padding: 0;
+    border: 1px solid #fff;
+    box-sizing: border-box;
+    width: 24px;
+    height: 24px;
+    object-fit: cover;
+    background-color: black;
+}
+
+.button__edit:hover {
+    opacity: 60%;
+}

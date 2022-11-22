@@ -1,0 +1,9 @@
+.element__item {
+    margin: 0;
+    padding: 0 21px 0 15px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 246px;
+    min-height: 23px;
+}

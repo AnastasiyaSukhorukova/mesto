@@ -1,0 +1,7 @@
+.profile__intro {
+    grid-area: 'profile__intro';
+    margin: 0 0 0 30px;
+    padding: 0;
+    display: flex;
+    max-width: 336px;
+}
