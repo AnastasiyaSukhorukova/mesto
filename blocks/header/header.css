@@ -2,11 +2,23 @@
   padding: 45px 0 0;
   margin: 0 auto;
   max-width: 880px;
-  width: 100%;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 1152px) {
+  .header {
+    max-width: 730px;
+  }
+}
+
+@media screen and (max-width: 896px) {
+  .header {
+    max-width: 500px;
+  }
+}
+
+@media screen and (max-width: 544px) {
   .header {
     max-width: 320px;
+    padding-top: 48px;
   }
 }

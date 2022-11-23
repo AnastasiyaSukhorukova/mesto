@@ -1,10 +1,26 @@
 .profile__intro-subtitle {
   margin: 0;
-  padding: 0;
+  padding: 0 0 25px;
   max-width: 336px;
   color: #fff;
   font-size: 18px;
   line-height: 21.78px;
   font-style: normal;
   font-weight: 400;
+}
+
+@media screen and (max-width: 896px) {
+  .profile__intro-subtitle {
+    font-size: 14px;
+    line-height: 19.5px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .profile__intro-subtitle {
+    font-size: 14px;
+    line-height: 16.94px;
+    padding: 0;
+    margin-top: 14px;
+  }
 }

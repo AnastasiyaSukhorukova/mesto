@@ -1,14 +1,13 @@
 .logo {
-    background-image: url('../../images/Vector.png');
-    background-repeat: no-repeat;
+    object-fit: cover;
     margin: 0;
     padding: 0 0 41px;
     max-width: 142px;
     min-height: 33px;
 }
 
-@media screen and (max-width: 320px) {
+@media screen and (max-width: 544px) {
     .logo {
-        padding-bottom: 31.6px;
+        padding: 0 0 31.6px 27px;
     }
 }

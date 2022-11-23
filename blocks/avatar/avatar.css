@@ -1,9 +1,23 @@
 .avatar {
-    border-radius: 50%;
-    object-fit: cover;
+  border-radius: 50%;
+  object-fit: cover;
+  max-width: 120px;
+  max-height: 120px;
+  margin: 0;
+  padding: 0;
+  grid-area: "avatar";
+}
+
+@media screen and (max-width: 896px) {
+  .avatar {
+    max-width: 190px;
+    max-height: 100px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .avatar {
     max-width: 120px;
     max-height: 120px;
-    margin: 0;
-    padding: 0;
-    grid-area: 'avatar';
+  }
 }
