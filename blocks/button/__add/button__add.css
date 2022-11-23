@@ -1,5 +1,5 @@
 .button__add {
-  margin: 75px 0 35px 0;
+  margin: 35px 0 35px 0;
   padding: 0;
   border: 1px solid #fff;
   box-sizing: border-box;
@@ -8,7 +8,6 @@
   object-fit: cover;
   background-color: black;
   grid-area: "button__add";
-  position: absolute;
   grid-column-start: 4;
   grid-column-end: 4;
 }
@@ -25,7 +24,9 @@
 
 @media screen and (max-width: 544px) {
   .button__add {
-    margin: 36px 0;
+    margin: 36px 0 36px;
     width: 282px;
+    grid-row-start: 4;
+    grid-row-end: 4;
   }
 }

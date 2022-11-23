@@ -1,6 +1,6 @@
 .element__item {
     margin: 0;
-    padding: 0 21px 0 15px;
+    padding: 0 15px 0 21px;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -9,5 +9,12 @@
 @media screen and (max-width: 896px) {
     .element__item {
         padding: 0 13px 0 13px;
+    }
+}
+
+@media screen and (max-width: 655px) {
+    .element__item {
+        height: 79px;
+        padding: 0 15px 0 21px;
     }
 }

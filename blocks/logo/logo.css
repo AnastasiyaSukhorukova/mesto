@@ -1,13 +1,15 @@
 .logo {
-    object-fit: cover;
-    margin: 0;
-    padding: 0 0 41px;
-    max-width: 142px;
-    min-height: 33px;
+  object-fit: cover;
+  margin: 0;
+  padding: 0 0 41px;
+  max-width: 142px;
+  min-height: 33px;
 }
 
 @media screen and (max-width: 544px) {
-    .logo {
-        padding: 0 0 31.6px 27px;
-    }
+  .logo {
+    padding: 0 0 31.6px 27px;
+    max-width: 103.74px;
+    min-height: 24.4px;
+  }
 }
