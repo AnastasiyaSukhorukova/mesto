@@ -5,7 +5,7 @@
   max-height: 120px;
   margin: 0;
   padding: 0;
-  grid-area: "avatar";
+  grid-area: 'avatar';
 }
 
 @media screen and (max-width: 896px) {

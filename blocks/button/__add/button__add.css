@@ -7,7 +7,7 @@
   height: 50px;
   object-fit: cover;
   background-color: black;
-  grid-area: "button__add";
+  grid-area: 'button__add';
   grid-column-start: 4;
   grid-column-end: 4;
 }

@@ -4,6 +4,7 @@
   max-width: 336px;
   max-height: 39px;
   position: relative;
+  grid-area: 'profile__intro';
 }
 
 @media screen and (max-width: 544px) {

@@ -7,7 +7,7 @@
   display: grid;
   grid-template-columns: 120px 366px 1fr 150px;
   grid-template-rows: 120px;
-  grid-template-areas: "avatar" "profile__intro" "button__add";
+  grid-template-areas: 'avatar' 'profile__intro' 'button__add';
 }
 
 @media screen and (max-width: 1152px) {
