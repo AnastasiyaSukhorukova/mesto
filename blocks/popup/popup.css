@@ -1,6 +1,7 @@
 .popup {
-  background-color: #fff;
-  /*display: none;*/
+  display: none;
+  background-color: black;
+  z-index: 1;
 }
 
 @media screen and (max-width: 544px) {

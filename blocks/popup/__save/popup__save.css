@@ -1,5 +1,5 @@
 .popup__save {
-  margin: 0;
+  margin: 48px 36px 37px 36px;
   padding: 0;
   background-color: #000;
   width: 358px;
@@ -16,6 +16,7 @@
 
 @media screen and (max-width: 544px) {
   .popup__save {
+    margin: 45px 22px 25px;
     width: 238px;
     height: 46px;
   }

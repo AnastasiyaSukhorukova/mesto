@@ -5,4 +5,5 @@
   max-height: 361px;
   height: 100%;
   border-radius: 10px;
+  overflow: hidden;
 }
