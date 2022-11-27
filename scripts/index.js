@@ -18,8 +18,8 @@ function closePopup() {
 // Находим форму в DOM
 const formElement = document.querySelector('.popup__form');
 // Находим поля формы в DOM
-const nameInput = document.querySelector('.popup__name');
-const jobInput = document.querySelector('.popup__career');
+const nameInput = document.querySelector('.popup__input_type_name');
+const jobInput = document.querySelector('.popup__input_type_job');
 const saveButton = document.querySelector('.popup__save');
 
 // Обработчик «отправки» формы, хотя пока

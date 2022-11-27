@@ -1,4 +1,4 @@
-.popup__name {
+.popup__input {
   border: 0;
   border-bottom: 1px solid rgba(0, 0 , 0 ,0.2);
   box-sizing: border-box;
@@ -6,13 +6,13 @@
   height: 27px;
 }
 
-.popup__name:focus {
+.popup__input:focus {
   outline: 2px solid rgb(0, 110, 255);
   border-radius: 2px;
 }
 
 @media screen and (max-width: 544px) {
-  .popup__name {
+  .popup__input {
     width: 238px;
   }
 }
