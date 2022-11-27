@@ -23,6 +23,7 @@
 
 С помощью JS было реализовано открытие и закрытие попапа, а также возможность редактирования данных профиля. 
 
-*Ссылка на проект http://anastasiyasukhorukova.github.io.mesto.com /*
+*Ссылка на проект 
+https://anastasiyasukhorukova.github.io/mesto / *
 
 Спасибо за внимание!
