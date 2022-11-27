@@ -1,146 +1,98 @@
 <!DOCTYPE html>
 <html lang="ru">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="./pages/index.css" />
-    <title>Mesto</title>
-  </head>
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <link rel="stylesheet" href="./pages/index.css" />
+        <title>Mesto</title>
+    </head>
 
-  <body class="page page__position">
-    <header class="header">
-      <img class="logo" src="./images/Vector.png" alt="Логотип сайта mesto" />
-      <div class="header__line"></div>
-    </header>
+    <body class="page page__position">
+        <header class="header">
+            <img class="logo" src="./images/Vector.png" alt="Логотип сайта mesto" />
+            <div class="header__line"></div>
+        </header>
 
-    <main>
-      <section class="profile">
-        <img class="avatar" src="./images/avatar.png" alt="Фото профиля" />
-        <div class="profile__name">
-          <div class="profile__intro">
-            <h1 class="profile__intro-title">Жак-Ив Кусто</h1>
-            <button class="profile__button-edit"></button>
-          </div>
-          <p class="profile__intro-subtitle">Исследователь океана</p>
-        </div>
+        <main>
+            <section class="profile">
+                <img class="avatar" src="./images/avatar.png" alt="Фото профиля" />
+                <div class="profile__name">
+                    <div class="profile__intro">
+                        <h1 class="profile__intro-title">Жак-Ив Кусто</h1>
+                        <button class="profile__button-edit"></button>
+                    </div>
+                    <p class="profile__intro-subtitle">Исследователь океана</p>
+                </div>
 
-        <button class="profile__button-add" type="button"></button>
-      </section>
+                <button class="profile__button-add" type="button"></button>
+            </section>
 
-      <section class="elements">
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/belgorod.jpg"
-            alt="Фотокарточка меловых гор в Белгороде"
-          />
-          <div class="element__item">
-            <h2 class="element__title">Белгород</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
+            <section class="elements">
+                <article class="element">
+                    <img class="element__image" src="./images/belgorod.jpg" alt="Фотокарточка меловых гор в Белгороде" />
+                    <div class="element__item">
+                        <h2 class="element__title">Белгород</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
 
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/baikal.jpg"
-            alt="Фотокарточка Зимнего Байкала"
-          />
-          <div class="element__item">
-            <h2 class="element__title">Байкал</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
+                <article class="element">
+                    <img class="element__image" src="./images/baikal.jpg" alt="Фотокарточка Зимнего Байкала" />
+                    <div class="element__item">
+                        <h2 class="element__title">Байкал</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
 
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/moscow.jpg"
-            alt="Фотокарточка Храма Василия Блаженного в Москве"
-          />
-          <div class="element__item">
-            <h2 class="element__title">Москва</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
+                <article class="element">
+                    <img class="element__image" src="./images/moscow.jpg" alt="Фотокарточка Храма Василия Блаженного в Москве" />
+                    <div class="element__item">
+                        <h2 class="element__title">Москва</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
 
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/Krasnodar Krai.jpg"
-            alt="Фотокарточка черного моря в Сочи"
-          />
-          <div class="element__item">
-            <h2 class="element__title">Сочи</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
+                <article class="element">
+                    <img class="element__image" src="./images/Sochi.jpg" alt="Фотокарточка черного моря в Сочи" />
+                    <div class="element__item">
+                        <h2 class="element__title">Сочи</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
 
-        <article class="element">
-          <img
-            class="element__image"
-            src="./images/Sankt-Peterburg.jpg"
-            alt="Фотокарточка зимнего дворца в Санкт-Петербурге"
-          />
-          <div class="element__item">
-            <h2 class="element__title">Санкт-Петербург</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
+                <article class="element">
+                    <img class="element__image" src="./images/Sankt-Peterburg.jpg" alt="Фотокарточка зимнего дворца в Санкт-Петербурге" />
+                    <div class="element__item">
+                        <h2 class="element__title">Санкт-Петербург</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
 
-        <article class="element">
-          <img class="element__image" src="./images/Kamchatka.jpg" alt="" />
-          <div class="element__item">
-            <h2 class="element__title">Камчатка</h2>
-            <button
-              class="element__like element__like_active"
-              type="button"
-            ></button>
-          </div>
-        </article>
-      </section>
+                <article class="element">
+                    <img class="element__image" src="./images/Kamchatka.jpg" alt="Фотокарточка Камчатки"/>
+                    <div class="element__item">
+                        <h2 class="element__title">Камчатка</h2>
+                        <button class="element__like element__like_active" type="button"></button>
+                    </div>
+                </article>
+            </section>
 
-      <section class="popup popup__background">
-        <div class="popup__container">
-          <button class="popup__close" type="button"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <form class="popup__form" action="#" method="get">
-            <input
-              class="popup__input popup__name-text popup__input_type_name"
-              type="text"
-              value="Жак-Ив Кусто"
-            />
-            <input
-              class="popup__input popup__name-text popup__input_type_job"
-              type="text"
-              value="Исследователь океана"
-            />
-          <button class="popup__save" type="submit">
-            <p class="popup__save-text">Сохранить</p>
-          </button>
-        </form>
-        </div>
-      </section>
-    </main>
+            <section class="popup popup__background">
+                <div class="popup__container">
+                    <button class="popup__close" type="button"></button>
+                    <h2 class="popup__title">Редактировать профиль</h2>
+                    <form class="popup__form" action="#" method="get">
+                        <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" />
+                        <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" />
+                        <button class="popup__save popup__save-text" type="submit">Сохранить</button>
+                    </form>
+                </div>
+            </section>
+        </main>
 
-    <footer>
-      <p class="footer">© 2022 Mesto Russia</p>
-    </footer>
-    <script src="./scripts/index.js"></script>
-  </body>
+        <footer>
+            <p class="footer">© 2022 Mesto Russia</p>
+        </footer>
+        <script src="./scripts/index.js"></script>
+    </body>
 </html>
