@@ -5,3 +5,15 @@
   max-height: 282px;
   height: 100%;
 }
+
+@media screen and (max-width: 896px) {
+  .element__image {
+    max-height: 157px;
+  }
+}
+
+@media screen and (max-width: 544px) {
+  .element__image {
+    max-height: 282px;
+  }
+}

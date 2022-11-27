@@ -5,7 +5,8 @@
   max-width: 880px;
   width: 100%;
   display: grid;
-  gap: 17px;
+  grid-column-gap: 17px;
+  grid-row-gap: 20px;
   grid-template-columns: repeat(3, 1fr);
 }
 
@@ -21,6 +22,8 @@
   .elements {
     max-width: 500px;
     grid-template-columns: repeat(3, 157px);
+    grid-column-gap: 14px;
+    grid-row-gap: 18px;
   }
 }
 

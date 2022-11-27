@@ -2,6 +2,10 @@
   padding: 45px 0 0;
   margin: 0 auto;
   max-width: 880px;
+  max-height: 119px;
+  border-bottom: 1px solid #545454;
+  box-sizing: border-box;
+  opacity: 70%;
 }
 
 @media screen and (max-width: 1152px) {

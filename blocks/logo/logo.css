@@ -2,6 +2,7 @@
   object-fit: cover;
   margin: 0;
   padding: 0 0 41px;
+  box-sizing: border-box;
   max-width: 142px;
   min-height: 33px;
 }

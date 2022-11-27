@@ -9,17 +9,16 @@
 
     <body class="page">
         <header class="header">
-            <img class="logo" src="./images/Vector.png" alt="Логотип сайта mesto" />
-            <div class="header__line"></div>
+            <img class="logo" src="./images/logo.svg" alt="Логотип сайта mesto" />
         </header>
 
         <main>
             <section class="profile">
-                <img class="avatar" src="./images/avatar.png" alt="Фото профиля" />
+                <img class="profile__avatar" src="./images/avatar.png" alt="Фото профиля" /> 
                 <div class="profile__name">
                     <div class="profile__intro">
                         <h1 class="profile__intro-title">Жак-Ив Кусто</h1>
-                        <button class="profile__button-edit"></button>
+                        <button class="profile__button-edit" type="button"></button>
                     </div>
                     <p class="profile__intro-subtitle">Исследователь океана</p>
                 </div>
@@ -76,23 +75,24 @@
                     </div>
                 </article>
             </section>
-
-            <section class="popup overlay">
-                <div class="popup__container">
-                    <button class="popup__close" type="button"></button>
-                    <h2 class="popup__title">Редактировать профиль</h2>
-                    <form class="popup__form" action="#" method="get">
-                        <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" />
-                        <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" />
-                        <button class="popup__save popup__save-text" type="submit">Сохранить</button>
-                    </form>
-                </div>
-            </section>
         </main>
 
-        <footer>
-            <p class="footer">© 2022 Mesto Russia</p>
+        <footer class="footer">
+            <p class="footer__text">© 2022 Mesto Russia</p>
         </footer>
+
+        <section class="popup">
+            <div class="popup__container">
+                <button class="popup__close" type="button"></button>
+                <h2 class="popup__title">Редактировать профиль</h2>
+                <form class="popup__form" action="#" method="get" name="popupForm">
+                    <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" name="name"/>
+                    <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" name="job"/>
+                    <button class="popup__save popup__save-text" type="submit">Сохранить</button>
+                </form>
+            </div>
+        </section>
+
         <script src="./scripts/index.js"></script>
     </body>
 </html>

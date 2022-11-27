@@ -1,7 +1,8 @@
 .profile__button-edit {
   margin: 0 0 0 18px;
   padding: 0;
-  background-image: url('../../../images/correct.png');
+  cursor: pointer;
+  background-image: url('../../../images/edit.svg');
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #fff;

@@ -1,7 +1,8 @@
 .profile__button-add {
   margin: 35px 0 35px 0;
   padding: 0;
-  background-image: url('../../../images/add.png');
+  cursor: pointer;
+  background-image: url('../../../images/add.svg');
   background-repeat: no-repeat;
   background-position: center;
   border: 1px solid #fff;

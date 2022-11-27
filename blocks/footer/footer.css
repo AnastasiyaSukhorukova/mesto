@@ -1,9 +1,4 @@
 .footer {
-  color: #545454;
-  font-size: 18px;
-  line-height: 21.78px;
-  font-style: normal;
-  font-weight: 400;
   margin: 0 auto;
   padding: 0 0 60px;
   box-sizing: border-box;
@@ -26,7 +21,5 @@
   .footer {
     max-width: 320px;
     padding: 48px 19px 36px;
-    font-size: 14px;
-    line-height: 16.94px;
   }
 }
