@@ -1,12 +1,4 @@
 .popup {
   display: none;
-  background-color: black;
-  z-index: 1;
 }
 
-@media screen and (max-width: 544px) {
-  .popup {
-    max-width: 282px;
-    min-height: 322px;
-  }
-}
