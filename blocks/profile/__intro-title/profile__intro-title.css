@@ -16,6 +16,7 @@
   .profile__intro-title {
     font-size: 30px;
     line-height: 36px;
+    max-width: 189px;
   }
 }
 
@@ -23,8 +24,6 @@
   .profile__intro-title {
     font-size: 27px;
     line-height: 32.68px;
-    max-width: 189px;
     text-align: center;
-    
   }
 }
