@@ -11,8 +11,9 @@ const userJob = document.querySelector('.profile__intro-subtitle');
 
 function openedPopup() {
   popup.classList.add('popup_opened');
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
 }
-// По заданию при открытии попапа инпуты должны заполняться данными со страницы - не совсем поняла замечание - попап заполняется данными со страницами
 
 
 function closePopup() {
