@@ -1,15 +1,15 @@
 .profile__intro {
-  margin: 0 0 16px;
+  margin: 22px 0 0;
   padding: 0;
   max-width: 336px;
   max-height: 39px;
-  position: relative;
   grid-area: 'profile__intro';
+  display: flex;
+  align-items: baseline;
 }
 
 @media screen and (max-width: 544px) {
   .profile__intro {
-    margin: 22.25px 0 0 0;
-    max-width: 320px;
+    margin: 26.25px 0 0 25px;
   }
 }

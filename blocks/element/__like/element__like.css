@@ -3,6 +3,8 @@
   padding: 0;
   cursor: pointer;
   background-image: url('../../../images/like.svg');
+  background-size: contain;
+  background-repeat: no-repeat;
   width: 22px;
   height: 19px;
   border: none;
@@ -11,10 +13,4 @@
 
 .element__like:hover {
   opacity: 50%;
-}
-
-@media screen and (max-width: 896px) {
-  .element__like {
-    margin: 0;
-  }
 }
