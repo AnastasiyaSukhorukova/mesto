@@ -12,7 +12,6 @@ const userJob = document.querySelector('.profile__intro-subtitle');
 
 const buttonAdd = document.querySelector('.profile__button-add');
 const popupAdd = document.querySelector('.popup__add'); // кнопка редактирования карточек
-const popupButtonAdd = document.querySelector('.popup__add-input');
 
 const formInputCardName = document.querySelector('.popup__input_type_title');
 const formInputCardLink = document.querySelector('.popup__input_type_link');
@@ -27,6 +26,10 @@ const formElementAdd = document.querySelector('.popup__add-form');
 const inputAdd = document.querySelector('.popup__add-input');
 // кнопка удалить 
 const buttonDel = document.querySelector('.element__delete');
+
+const popupImg = document.querySelector('.popup-image');
+const titleImg = document.querySelector('.popup-image__title');
+const BigImg = document.querySelector('.popup-image__img');
 
 const initialCards = [
   {
@@ -77,6 +80,11 @@ function closePopupAdd() {
   popupAdd.classList.remove('popup_opened');
 }
 
+// открытие попапа с картинкой на весь экран 
+function openedPopupImg() {
+  popupImg.classList.add('popup_opened');
+}
+
 // функция отправки формы с инф-цией профиля
 function handleFormSubmit (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
@@ -86,10 +94,12 @@ function handleFormSubmit (evt) {
   closePopup();
 }
 
+// функция удаления карточек
 function handleDeleteCards(evt) {
   evt.target.closest('.element').remove();
 }
 
+// функция лайков, при мажатии на ближаший класс добавляется/убирается булевый модификатор 
 function handleLikeCard(evt) {
   evt.target.closest('.element__like').classList.toggle('element__like_active');
 }
@@ -99,10 +109,12 @@ function inputCards(cardsData) {
   // клонируем контент темплейт
   const newCards = template.cloneNode(true);
 
+  // создаем новую карточку - задаем название, альты и ссылку
   newCards.querySelector('.element__title').textContent = cardsData.name;
   newCards.querySelector('.element__image').alt = cardsData.name;
   newCards.querySelector('.element__image').src = cardsData.link;
 
+  // переменная и слушатель на кнопку удалить и лайк
   const cardDelete = newCards.querySelector('.element__delete');
   cardDelete.addEventListener('click', handleDeleteCards);
 
@@ -113,12 +125,12 @@ function inputCards(cardsData) {
 
 };
 
-// функция которая добавляет карточки в начало элемента element 
+// функция которая добавляет карточки в начало элемента elements 
 function renderCard(cardsData) {
   elementCards.prepend(inputCards(cardsData));
 }
 
-// добавляем массив и вызываем нашу функцию
+// с помощью forEach перебираем массив 
 initialCards.forEach(function(cardsData) {
   renderCard(cardsData);
 });
