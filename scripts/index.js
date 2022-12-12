@@ -58,31 +58,9 @@ const initialCards = [
   }
 ];
 
-// открытие попапа редактирование профиля
-function openedPopup() {
-  popupEdit.classList.add('popup_opened');
-  nameInput.value = userName.textContent;
-  jobInput.value = userJob.textContent;
-}
-
-// открытие попапа добавления карточки
-function openedPopupAdd() {
-  popupAdd.classList.add('popup_opened');
-}
-
-// закрытие попапа редактирования профиля
-function closePopup() {
-  popupEdit.classList.remove('popup_opened');
-}
-
-// закрытие попапа добавления карточек
-function closePopupAdd() {
-  popupAdd.classList.remove('popup_opened');
-}
-
-// открытие попапа с картинкой на весь экран 
-function openedPopupImg() {
-  popupImg.classList.add('popup_opened');
+// открытие - закрытие попапов
+function tooglePopupClass(popup) {
+  popup.classList.toggle('popup_opened');
 }
 
 // функция отправки формы с инф-цией профиля
@@ -91,7 +69,7 @@ function handleFormSubmit (evt) {
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
 
-  closePopup();
+  tooglePopupClass(popupEdit);
 }
 
 // функция удаления карточек
@@ -110,7 +88,9 @@ function inputCards(cardsData) {
   const newCards = template.cloneNode(true);
 
   // создаем новую карточку - задаем название, альты и ссылку
+  const elementCardTitle = newCards.querySelector('.element__title');
   newCards.querySelector('.element__title').textContent = cardsData.name;
+  const elementCardImg = newCards.querySelector('.element__image');
   newCards.querySelector('.element__image').alt = cardsData.name;
   newCards.querySelector('.element__image').src = cardsData.link;
 
@@ -120,6 +100,13 @@ function inputCards(cardsData) {
 
   const cardLike = newCards.querySelector('.element__like');
   cardLike.addEventListener('click', handleLikeCard);
+
+  elementCardImg.addEventListener('click', function() {
+    bigImg.src = cardsData.link;
+    bigImg.alt = cardsData.name;
+    titleImg.textContent = cardsData.name;
+    tooglePopupClass(popupImg);
+  });
 
   return newCards;
 
@@ -144,15 +131,31 @@ function handleFormSubmitCard (evt) {
   });
   
   evt.target.reset();
-  closePopupAdd(popupAdd);
+  tooglePopupClass(popupAdd);
 }
 
 // слушатели кнопок открыть-закрыть
-buttonEdit.addEventListener('click', openedPopup);
-buttonAdd.addEventListener('click', openedPopupAdd);
+buttonEdit.addEventListener('click', function() {
+  nameInput.value = userName.textContent;
+  jobInput.value = userJob.textContent;
+  tooglePopupClass(popupEdit);
+});
 
-closeElementAdd.addEventListener('click', closePopupAdd);
-closeElement.addEventListener('click', closePopup);
+closeElement.addEventListener('click', function() {
+  tooglePopupClass(popupEdit);
+})
+
+buttonAdd.addEventListener('click', function() {
+  tooglePopupClass(popupAdd);
+})
+
+closeElementAdd.addEventListener('click', function() {
+  tooglePopupClass(popupAdd);
+})
+
+closeBigImg.addEventListener('click', function() {
+  tooglePopupClass(popupImg);
+})
 
 //слушатели отправки форм
 formElement.addEventListener('submit', handleFormSubmit);
