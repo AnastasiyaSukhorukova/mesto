@@ -1,6 +1,6 @@
 // переменные попапов 
 const popupEdit = document.querySelector('.popup');
-const popupAdd = document.querySelector('.popup__add');
+const popupAdd = document.querySelector('.popup-add');
 const popupImg = document.querySelector('.popup-image');
 
 // открытие попапов

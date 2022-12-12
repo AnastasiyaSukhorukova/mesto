@@ -14,7 +14,7 @@
 
         <main>
             <section class="profile">
-                <img class="profile__avatar" src="./images/avatar.png" alt="Фото профиля" /> 
+                <img class="profile__avatar" src="./images/avatar.png" alt="Фото профиля" />
                 <div class="profile__name">
                     <div class="profile__intro">
                         <h1 class="profile__intro-title">Жак-Ив Кусто</h1>
@@ -28,61 +28,7 @@
 
             <section class="elements">
                 
-                <!--<article class="element">
-                    <img class="element__image" src="./images/belgorod.jpg" alt="Фотокарточка меловых гор в Белгороде" />
-                    <div class="element__item">
-                        <h2 class="element__title">Белгород</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>-->
-
-                <!--<article class="element">
-                    <img class="element__image" src="./images/baikal.jpg" alt="Фотокарточка Зимнего Байкала" />
-                    <div class="element__item">
-                        <h2 class="element__title">Байкал</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>-->
-
-                <!--<article class="element">
-                    <img class="element__image" src="./images/moscow.jpg" alt="Фотокарточка Храма Василия Блаженного в Москве" />
-                    <div class="element__item">
-                        <h2 class="element__title">Москва</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>
-
-                <article class="element">
-                    <img class="element__image" src="./images/Sochi.jpg" alt="Фотокарточка черного моря в Сочи" />
-                    <div class="element__item">
-                        <h2 class="element__title">Сочи</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>
-
-                <article class="element">
-                    <img class="element__image" src="./images/Sankt-Peterburg.jpg" alt="Фотокарточка зимнего дворца в Санкт-Петербурге" />
-                    <div class="element__item">
-                        <h2 class="element__title">Санкт-Петербург</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>
-
-                <article class="element">
-                    <img class="element__image" src="./images/Kamchatka.jpg" alt="Фотокарточка Камчатки"/>
-                    <div class="element__item">
-                        <h2 class="element__title">Камчатка</h2>
-                        <button class="element__like element__like_active" type="button"></button>
-                        <button class="element__delete" type="button"></button>
-                    </div>
-                </article>-->
             </section>
-        
         </main>
 
         <footer class="footer">
@@ -94,43 +40,43 @@
                 <button class="popup__close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
                 <form class="popup__form" action="#" method="get" name="popupForm">
-                    <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" name="name"/>
-                    <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" name="job"/>
+                    <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" name="name" />
+                    <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" name="job" />
                     <button class="popup__save popup__save-text" type="submit">Сохранить</button>
                 </form>
             </div>
         </section>
 
-         <section class="popup popup__add">
+        <section class="popup popup-add">
             <div class="popup__container">
                 <button class="popup__close popup__add-close" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
                 <form class="popup__form popup__add-form" action="#" method="get" name="popupForm">
-                        <input class="popup__input popup__name-text popup__input_type_title" type="text" placeholder="Название" name="name" value=""/>
-                        <input class="popup__input popup__name-text popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="link" value=""/>
-                        <button class="popup__save popup__save-text popup__add-input" type="submit">Создать</button>
+                    <input class="popup__input popup__name-text popup__input_type_title" type="text" placeholder="Название" name="name" value="" />
+                    <input class="popup__input popup__name-text popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="link" value="" />
+                    <button class="popup__save popup__save-text popup__add-input" type="submit">Создать</button>
                 </form>
             </div>
         </section>
 
         <section class="popup popup-image">
-          <figure class="popup-image__container">
-            <button class="popup__close popup-image__close" type="button"></button>
-            <div class="popup-image__item">
-            <img src="#" alt="" class="popup-image__img">
-            <figcaption class="popup-image__title"></figcaption>
-            </div>
-          </figure>
+            <figure class="popup-image__container">
+                <button class="popup__close popup-image__close" type="button"></button>
+                <div class="popup-image__item">
+                    <img src="#" alt="" class="popup-image__img" />
+                    <figcaption class="popup-image__title"></figcaption>
+                </div>
+            </figure>
         </section>
 
         <template id="cards">
             <div class="element">
-                    <img src="#" class="element__image" alt="">
-                        <div class="element__item">
-                            <h2 class="element__title" name="name"></h2>
-                            <button class="element__delete"></button>
-                            <button class="element__like"></button>
-                        </div>
+                <img src="#" class="element__image" alt="" />
+                <div class="element__item">
+                    <h2 class="element__title" name="name"></h2>
+                    <button class="element__delete"></button>
+                    <button class="element__like"></button>
+                </div>
             </div>
         </template>
 
