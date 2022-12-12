@@ -1,35 +1,35 @@
+// переменные попапов 
+const popupEdit = document.querySelector('.popup');
+const popupAdd = document.querySelector('.popup__add');
+const popupImg = document.querySelector('.popup-image');
 
-const popup = document.querySelector('.popup');
+// открытие попапов
 const buttonEdit = document.querySelector('.profile__button-edit');
-const closeElement = document.querySelector('.popup__close');
-const closeElementAdd = document.querySelector('.popup__add-close');
+const buttonAdd = document.querySelector('.profile__button-add');
+
+// закрытие попапов
+const closeElement = popupEdit.querySelector('.popup__close');
+const closeElementAdd = popupAdd.querySelector('.popup__close');
+const closeBigImg = popupImg.querySelector('.popup__close');
+
+// переменные для хранения информации в попапах и формах
 const formElement = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
+const formInputCardName = document.querySelector('.popup__input_type_title');
+const formInputCardLink = document.querySelector('.popup__input_type_link');
 const saveButton = document.querySelector('.popup__save');
 const userName = document.querySelector('.profile__intro-title');
 const userJob = document.querySelector('.profile__intro-subtitle');
-
-const buttonAdd = document.querySelector('.profile__button-add');
-const popupAdd = document.querySelector('.popup__add'); // кнопка редактирования карточек
-
-const formInputCardName = document.querySelector('.popup__input_type_title');
-const formInputCardLink = document.querySelector('.popup__input_type_link');
-
-// нашли темплейт и взяли из него контент 
-const template = document.querySelector('#cards').content.querySelector('.element');
-// Переменная куда нужно будет добавлять новые карточки
-const elementCards = document.querySelector('.elements');
-// форма добавления новых карточек
-const formElementAdd = document.querySelector('.popup__add-form');
-// кнопка создать новую карточку
-const inputAdd = document.querySelector('.popup__add-input');
-// кнопка удалить 
-const buttonDel = document.querySelector('.element__delete');
-
-const popupImg = document.querySelector('.popup-image');
 const titleImg = document.querySelector('.popup-image__title');
-const BigImg = document.querySelector('.popup-image__img');
+const bigImg = document.querySelector('.popup-image__img');
+
+// переменные для добавления новых карточек
+const template = document.querySelector('#cards').content.querySelector('.element');
+const elementCards = document.querySelector('.elements');
+const formElementAdd = document.querySelector('.popup__add-form');
+const inputAdd = document.querySelector('.popup__add-input');
+const buttonDel = document.querySelector('.element__delete');
 
 const initialCards = [
   {
@@ -60,7 +60,7 @@ const initialCards = [
 
 // открытие попапа редактирование профиля
 function openedPopup() {
-  popup.classList.add('popup_opened');
+  popupEdit.classList.add('popup_opened');
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
 }
@@ -72,7 +72,7 @@ function openedPopupAdd() {
 
 // закрытие попапа редактирования профиля
 function closePopup() {
-  popup.classList.remove('popup_opened');
+  popupEdit.classList.remove('popup_opened');
 }
 
 // закрытие попапа добавления карточек
