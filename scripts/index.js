@@ -1,5 +1,5 @@
 // переменные попапов 
-const popupEdit = document.querySelector('.popup');
+const popupEdit = document.querySelector('.profile-popup');
 const popupAdd = document.querySelector('.popup-add');
 const popupImg = document.querySelector('.popup-image');
 
@@ -8,12 +8,12 @@ const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonAdd = document.querySelector('.profile__button-add');
 
 // закрытие попапов
-const closeElement = popupEdit.querySelector('.popup__close');
+const profileCloseButton = popupEdit.querySelector('.popup__close');
 const closeElementAdd = popupAdd.querySelector('.popup__close');
 const closeBigImg = popupImg.querySelector('.popup__close');
 
 // переменные для хранения информации в попапах и формах
-const formElement = document.querySelector('.popup__form');
+const profileForm = document.querySelector('.popup__form');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const formInputCardName = document.querySelector('.popup__input_type_title');
@@ -58,18 +58,23 @@ const initialCards = [
   }
 ];
 
-// открытие - закрытие попапов
-function tooglePopupClass(popup) {
+// открытие попапов
+function toogleOpenPopupClass(popup) {
+  popup.classList.toggle('popup_opened');
+}
+
+// закрытие попапов
+function toogleClosePopupClass(popup) {
   popup.classList.toggle('popup_opened');
 }
 
 // функция отправки формы с инф-цией профиля
-function handleFormSubmit (evt) {
+function handleProfileFormSubmit (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
 
-  tooglePopupClass(popupEdit);
+  toogleClosePopupClass(popupEdit);
 }
 
 // функция удаления карточек
@@ -79,20 +84,19 @@ function handleDeleteCards(evt) {
 
 // функция лайков, при мажатии на ближаший класс добавляется/убирается булевый модификатор 
 function handleLikeCard(evt) {
-  evt.target.closest('.element__like').classList.toggle('element__like_active');
+  evt.target.classList.toggle('element__like_active');
 }
 
 // Функция, которая принимает аргументом объект который содержит name и link
-function inputCards(cardsData) {
+function createCard(cardsData) {
   // клонируем контент темплейт
   const newCards = template.cloneNode(true);
 
   // создаем новую карточку - задаем название, альты и ссылку
-  const elementCardTitle = newCards.querySelector('.element__title');
   newCards.querySelector('.element__title').textContent = cardsData.name;
   const elementCardImg = newCards.querySelector('.element__image');
-  newCards.querySelector('.element__image').alt = cardsData.name;
-  newCards.querySelector('.element__image').src = cardsData.link;
+  elementCardImg.alt = cardsData.name;
+  elementCardImg.src = cardsData.link;
 
   // переменная и слушатель на кнопку удалить и лайк
   const cardDelete = newCards.querySelector('.element__delete');
@@ -105,7 +109,7 @@ function inputCards(cardsData) {
     bigImg.src = cardsData.link;
     bigImg.alt = cardsData.name;
     titleImg.textContent = cardsData.name;
-    tooglePopupClass(popupImg);
+    toogleClosePopupClass(popupImg);
   });
 
   return newCards;
@@ -114,13 +118,11 @@ function inputCards(cardsData) {
 
 // функция которая добавляет карточки в начало элемента elements 
 function renderCard(cardsData) {
-  elementCards.prepend(inputCards(cardsData));
+  elementCards.prepend(createCard(cardsData));
 }
 
 // с помощью forEach перебираем массив 
-initialCards.forEach(function(cardsData) {
-  renderCard(cardsData);
-});
+initialCards.forEach(renderCard);
 
 // функция отправки формы
 function handleFormSubmitCard (evt) {
@@ -131,34 +133,34 @@ function handleFormSubmitCard (evt) {
   });
   
   evt.target.reset();
-  tooglePopupClass(popupAdd);
+  toogleClosePopupClass(popupAdd);
 }
 
 // слушатели кнопок открыть-закрыть
 buttonEdit.addEventListener('click', function() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  tooglePopupClass(popupEdit);
+  toogleOpenPopupClass(popupEdit);
 });
 
-closeElement.addEventListener('click', function() {
-  tooglePopupClass(popupEdit);
+profileCloseButton.addEventListener('click', function() {
+  toogleClosePopupClass(popupEdit);
 })
 
 buttonAdd.addEventListener('click', function() {
-  tooglePopupClass(popupAdd);
+  toogleOpenPopupClass(popupAdd);
 })
 
 closeElementAdd.addEventListener('click', function() {
-  tooglePopupClass(popupAdd);
+  toogleClosePopupClass(popupAdd);
 })
 
 closeBigImg.addEventListener('click', function() {
-  tooglePopupClass(popupImg);
+  toogleClosePopupClass(popupImg);
 })
 
 //слушатели отправки форм
-formElement.addEventListener('submit', handleFormSubmit);
+profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
 
 

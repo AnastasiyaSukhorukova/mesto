@@ -8,23 +8,22 @@
   box-sizing: border-box;
   position: fixed;
   top: 50%;
-  bottom: 50%;
   right: 50%;
+  bottom: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
 
 @media screen and (max-width: 940px) {
   .popup-image__container {
-    max-width: 616px;
-    max-height: 340px;
+    max-width: 516px;
+    max-height: 430px;
   }
 }
 
 @media screen and (max-width: 735px) {
   .popup-image__container {
-    max-width: 416px;
-    max-height: 140px;
+    max-width: 316px;
   }
 }
 
