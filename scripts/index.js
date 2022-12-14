@@ -59,13 +59,13 @@ const initialCards = [
 ];
 
 // открытие попапов
-function toogleOpenPopupClass(popup) {
-  popup.classList.toggle('popup_opened');
+function openPopupClass(popup) {
+  popup.classList.add('popup_opened');
 }
 
 // закрытие попапов
-function toogleClosePopupClass(popup) {
-  popup.classList.toggle('popup_opened');
+function closePopupClass(popup) {
+  popup.classList.remove('popup_opened');
 }
 
 // функция отправки формы с инф-цией профиля
@@ -74,7 +74,7 @@ function handleProfileFormSubmit (evt) {
   userName.textContent = nameInput.value;
   userJob.textContent = jobInput.value;
 
-  toogleClosePopupClass(popupEdit);
+  closePopupClass(popupEdit);
 }
 
 // функция удаления карточек
@@ -109,7 +109,7 @@ function createCard(cardsData) {
     bigImg.src = cardsData.link;
     bigImg.alt = cardsData.name;
     titleImg.textContent = cardsData.name;
-    toogleClosePopupClass(popupImg);
+    openPopupClass(popupImg);
   });
 
   return newCards;
@@ -133,30 +133,30 @@ function handleFormSubmitCard (evt) {
   });
   
   evt.target.reset();
-  toogleClosePopupClass(popupAdd);
+  closePopupClass(popupAdd);
 }
 
 // слушатели кнопок открыть-закрыть
 buttonEdit.addEventListener('click', function() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
-  toogleOpenPopupClass(popupEdit);
+  openPopupClass(popupEdit);
 });
 
 profileCloseButton.addEventListener('click', function() {
-  toogleClosePopupClass(popupEdit);
+  closePopupClass(popupEdit);
 })
 
 buttonAdd.addEventListener('click', function() {
-  toogleOpenPopupClass(popupAdd);
+  openPopupClass(popupAdd);
 })
 
 closeElementAdd.addEventListener('click', function() {
-  toogleClosePopupClass(popupAdd);
+  closePopupClass(popupAdd);
 })
 
 closeBigImg.addEventListener('click', function() {
-  toogleClosePopupClass(popupImg);
+  closePopupClass(popupImg);
 })
 
 //слушатели отправки форм
