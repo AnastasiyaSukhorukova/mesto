@@ -82,7 +82,7 @@ function handleDeleteCards(evt) {
   evt.target.closest('.element').remove();
 }
 
-// функция лайков, при мажатии на ближаший класс добавляется/убирается булевый модификатор 
+// функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
 function handleLikeCard(evt) {
   evt.target.classList.toggle('element__like_active');
 }
@@ -162,9 +162,6 @@ closeBigImg.addEventListener('click', function() {
 //слушатели отправки форм
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
-
-
-
 
 
 
