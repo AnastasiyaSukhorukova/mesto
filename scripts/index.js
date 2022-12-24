@@ -1,3 +1,15 @@
+// включение валидации вызовом enableValidation
+// все настройки передаются при вызове
+
+const enableValidationConfig = {
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__save',
+  inactiveButtonClass: 'popup__button_disabled',
+  inputErrorClass: 'popup__input_type_error',
+  errorClass: 'popup__error_visible'
+}; 
+
 // переменные попапов 
 const popupEdit = document.querySelector('.profile-popup');
 const popupAdd = document.querySelector('.popup-add');
@@ -163,7 +175,7 @@ closeBigImg.addEventListener('click', function() {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
 
-
+enableValidation(enableValidationConfig);
 
 
 

@@ -39,9 +39,11 @@
             <div class="popup__container">
                 <button class="popup__close" type="button"></button>
                 <h2 class="popup__title">Редактировать профиль</h2>
-                <form class="popup__form" action="#" method="get" name="popupForm">
-                    <input class="popup__input popup__name-text popup__input_type_name" type="text" value="Жак-Ив Кусто" name="name" />
-                    <input class="popup__input popup__name-text popup__input_type_job" type="text" value="Исследователь океана" name="job" />
+                <form class="popup__form" action="#" method="get" name="popupForm" novalidate>
+                    <input class="popup__input popup__name-text popup__input_type_name" id="popup__name" type="text" value="Жак-Ив Кусто" name="name" minlength="2" maxlength="40" required/>
+                    <span class="popup__input_error popup__name-error"></span>
+                    <input class="popup__input popup__name-text popup__input_type_job" id="popup__text" type="text" value="Исследователь океана" name="job" minlength="2" maxlength="200" required/>
+                    <span class="popup__input_error popup__text-error"></span>
                     <button class="popup__save popup__save-text" type="submit">Сохранить</button>
                 </form>
             </div>
@@ -51,9 +53,11 @@
             <div class="popup__container">
                 <button class="popup__close popup__add-close" type="button"></button>
                 <h2 class="popup__title">Новое место</h2>
-                <form class="popup__form popup__add-form" action="#" method="get" name="popupForm">
-                    <input class="popup__input popup__name-text popup__input_type_title" type="text" placeholder="Название" name="name" value="" />
-                    <input class="popup__input popup__name-text popup__input_type_link" type="text" placeholder="Ссылка на картинку" name="link" value="" />
+                <form class="popup__form popup__add-form" action="#" method="get" name="popupForm" novalidate>
+                    <input class="popup__input popup__name-text popup__input_type_title" id="popuo__title" type="text" placeholder="Название" name="name" value="" minlength="2" maxlength="30" required/>
+                    <span class="popup__input_error popuo__title-error"></span>
+                    <input class="popup__input popup__name-text popup__input_type_link" id="popup__link" type="url" placeholder="Ссылка на картинку" name="link" value="" required/>
+                    <span class="popup__input_error popup__link-error"></span>
                     <button class="popup__save popup__save-text popup__add-input" type="submit">Создать</button>
                 </form>
             </div>
@@ -80,6 +84,7 @@
             </div>
         </template>
 
+        <script src="./scripts/validate.js"></script>
         <script src="./scripts/index.js"></script>
     </body>
 </html>
