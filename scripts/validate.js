@@ -1,7 +1,7 @@
 
 // функция скрытия ошибки
 function hideInputError(formElement, inputElement, config) {
-  const errorElement = formElement.querySelector(`.${inputElement}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.classList.remove(config.errorClass);
   errorElement.textContent = ' ';
   inputElement.classList.remove(config.inputErrorClass);
@@ -9,7 +9,7 @@ function hideInputError(formElement, inputElement, config) {
 
 // функция показа ошибки
 function showInputError(formElement, inputElement, config) {
-  const errorElement = formElement.querySelector(`.${inputElement}-error`);
+  const errorElement = formElement.querySelector(`.${inputElement.id}-error`);
   errorElement.classList.add(config.errorClass);
   errorElement.textContent = inputElement.validationMessage;
   inputElement.classList.add(config.inputErrorClass);
