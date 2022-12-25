@@ -67,7 +67,19 @@ function openPopupClass(popup) {
 // закрытие попапов
 function closePopupClass(popup) {
   popup.classList.remove('popup_opened');
+  document.addEventListener('keydown', closePopupClassEsc);
 }
+
+// закрытие попапов по Esc
+function closePopupClassEsc(evt) {
+  if (evt.key === 'Escape') {
+    const popupOpened = document.querySelector('.popup_opened');
+    closePopupClass(popupOpened);
+  }
+}
+
+// закрытие попапов кликом на оверлей
+
 
 // функция отправки формы с инф-цией профиля
 function handleProfileFormSubmit (evt) {
