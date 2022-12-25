@@ -164,6 +164,7 @@ closeBigImg.addEventListener('click', function() {
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
 
+// вызов функции по валидации форм
 enableValidation({
   formSelector: '.popup__form',
   inputSelector: '.popup__input',

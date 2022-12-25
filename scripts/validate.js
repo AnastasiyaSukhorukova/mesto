@@ -24,19 +24,23 @@ function checkInputValid(formElement, inputElement, config) {
   }
 }
 
-// проверяет если хотя бы у одного инпута есть ошибка
+// проверяет если хотя бы одно из полей не прошло валидацию
 function hasInputValid(inputList) {
   return inputList.some((inputElement) => {
-    !inputElement.validity.valid;
+    return !inputElement.validity.valid;
   })
 };
-
+ 
+// функция которая меняет состояние кнопки
 function toogleButtonState(inputList, buttonElement, config) {
+  // Если есть хотя бы один невалидный инпут
   if(hasInputValid(inputList)) {
-    buttonElement.classList.remove(config.inactiveButtonClass);
+    // сделай кнопку неактивной
+    buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
   } else {
-    buttonElement.classList.add(config.inactiveButtonClass);
+    // сделай кнопку активной
+    buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = false;
   }
 }
@@ -45,6 +49,7 @@ function toogleButtonState(inputList, buttonElement, config) {
 function setEventListeners(formElement, config) {
 const inputList = Array.from(formElement.querySelectorAll(config.inputSelector));
 const buttonElement = formElement.querySelector(config.submitButtonSelector);
+// Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
 toogleButtonState(inputList, buttonElement, config);
 inputList.forEach((inputElement) => {
   inputElement.addEventListener('input', function() {
@@ -54,7 +59,7 @@ inputList.forEach((inputElement) => {
 });
 }
 
-// функция проверки всех форм на валидность 
+// функция ответственная за включение валидации всех форм 
 function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
