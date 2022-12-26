@@ -62,24 +62,29 @@ const initialCards = [
 // открытие попапов
 function openPopupClass(popup) {
   popup.classList.add('popup_opened');
+  document.addEventListener('keydown', closePopupClassEsc);
 }
 
 // закрытие попапов
 function closePopupClass(popup) {
   popup.classList.remove('popup_opened');
-  document.addEventListener('keydown', closePopupClassEsc);
+  document.removeEventListener('keydown', closePopupClassEsc);
 }
 
 // закрытие попапов по Esc
-function closePopupClassEsc(evt) {
+function closePopupClassEsc(evt, popupEsc) {
   if (evt.key === 'Escape') {
     const popupOpened = document.querySelector('.popup_opened');
     closePopupClass(popupOpened);
   }
 }
 
-// закрытие попапов кликом на оверлей
-
+// закрытие попапов кликом на оверлей - она должна быть в глобальной области 
+function closePopupOverlay(evt) {
+  if (evt.target.classList.contains('popup_opened')) {
+    closePopupClass(evt.target);
+  }
+}
 
 // функция отправки формы с инф-цией профиля
 function handleProfileFormSubmit (evt) {
@@ -171,6 +176,11 @@ closeElementAdd.addEventListener('click', function() {
 closeBigImg.addEventListener('click', function() {
   closePopupClass(popupImg);
 })
+
+// слушатель закрытия попапа кликом на оверлей
+popupEdit.addEventListener('mousedown', closePopupOverlay);
+popupAdd.addEventListener('mousedown', closePopupOverlay);
+popupImg.addEventListener('mousedown', closePopupOverlay);
 
 //слушатели отправки форм
 profileForm.addEventListener('submit', handleProfileFormSubmit);
