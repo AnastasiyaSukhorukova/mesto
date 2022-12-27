@@ -4,10 +4,11 @@
   line-height: 14.52px;
   color: #ff0000;
   display: block;
-  margin: 5px 0 0 13px;
   box-sizing: border-box;
   width: 358px;
   min-height: 12px;
+  position: absolute;
+  left: 0;
 }
 
 @media screen and (max-width: 544px) {

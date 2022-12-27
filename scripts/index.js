@@ -108,19 +108,19 @@ function handleLikeCard(evt) {
 // Функция, которая принимает аргументом объект который содержит name и link
 function createCard(cardsData) {
   // клонируем контент темплейт
-  const newCards = template.cloneNode(true);
+  const newCard = template.cloneNode(true);
 
   // создаем новую карточку - задаем название, альты и ссылку
-  newCards.querySelector('.element__title').textContent = cardsData.name;
-  const elementCardImg = newCards.querySelector('.element__image');
+  newCard.querySelector('.element__title').textContent = cardsData.name;
+  const elementCardImg = newCard.querySelector('.element__image');
   elementCardImg.alt = cardsData.name;
   elementCardImg.src = cardsData.link;
 
   // переменная и слушатель на кнопку удалить и лайк
-  const cardDelete = newCards.querySelector('.element__delete');
+  const cardDelete = newCard.querySelector('.element__delete');
   cardDelete.addEventListener('click', handleDeleteCards);
 
-  const cardLike = newCards.querySelector('.element__like');
+  const cardLike = newCard.querySelector('.element__like');
   cardLike.addEventListener('click', handleLikeCard);
 
   elementCardImg.addEventListener('click', function() {
@@ -130,7 +130,7 @@ function createCard(cardsData) {
     openPopupClass(popupImg);
   });
 
-  return newCards;
+  return newCard;
 
 };
 

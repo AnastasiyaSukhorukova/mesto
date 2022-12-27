@@ -1,8 +1,6 @@
 .popup-image__item {
   margin: 0;
   padding: 0;
-  max-width: 816px;
-  max-height: 540px;
   position: relative;
   display: flex;
   justify-content: flex-start;
