@@ -152,6 +152,8 @@ function handleFormSubmitCard (evt) {
   
   evt.target.reset();
   closePopupClass(popupAdd);
+  evt.submitter.disabled = true;
+  evt.submitter.classList.add('popup__save_disabled');
 }
 
 // слушатели кнопок открыть-закрыть
@@ -165,9 +167,11 @@ profileCloseButton.addEventListener('click', function() {
   closePopupClass(popupEdit);
 })
 
-buttonAdd.addEventListener('click', function() {
+function openCardAdd() {
   openPopupClass(popupAdd);
-})
+}
+
+buttonAdd.addEventListener('click', openCardAdd);
 
 closeElementAdd.addEventListener('click', function() {
   closePopupClass(popupAdd);
@@ -186,15 +190,16 @@ popupImg.addEventListener('mousedown', closePopupOverlay);
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
 
-// вызов функции по валидации форм
-enableValidation({
+validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__save',
   inactiveButtonClass: 'popup__save_disabled',
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__error_visible'
-}); 
+}
+// вызов функции по валидации форм
+enableValidation(validationConfig); 
 
 
 

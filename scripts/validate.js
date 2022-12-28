@@ -31,18 +31,26 @@ function hasInputValid(inputList) {
   })
 };
  
-// функция которая меняет состояние кнопки
-function toogleButtonState(inputList, buttonElement, config) {
-  // Если есть хотя бы один невалидный инпут
-  if(hasInputValid(inputList)) {
-    // сделай кнопку неактивной
+// активное состояние кнопки
+function enableSubmitButton(inputList, buttonElement, config) {
+  if (hasInputValid(inputList)) {
     buttonElement.classList.add(config.inactiveButtonClass);
     buttonElement.disabled = true;
-  } else {
-    // сделай кнопку активной
+  }
+}
+
+// неактивное состояние кнопки
+function disableSubmitButton(inputList, buttonElement, config) {
+  if (!hasInputValid(inputList)) {
     buttonElement.classList.remove(config.inactiveButtonClass);
     buttonElement.disabled = false;
   }
+}
+
+// функция которая меняет состояние кнопки
+function toogleButtonState(inputList, buttonElement, config) {
+  enableSubmitButton(inputList, buttonElement, config);
+  disableSubmitButton(inputList, buttonElement, config);
 }
 
 // проверяем валидность полей ввода
