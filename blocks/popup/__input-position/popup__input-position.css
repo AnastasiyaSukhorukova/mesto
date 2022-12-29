@@ -1,10 +1,10 @@
-.popup__input_position_relative {
+.popup__input-position {
   margin: 0 0 30px 0;
   padding: 0 0 13px 0;
   position: relative;
   box-sizing: border-box;
 }
 
-.popup__input_position_relative:last-of-type{
+.popup__input-position:last-of-type{
   margin: 0;
 }
