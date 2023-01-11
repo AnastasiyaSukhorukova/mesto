@@ -95,16 +95,6 @@ function handleProfileFormSubmit (evt) {
   closePopupClass(popupEdit);
 }
 /*
-// функция удаления карточек
-function handleDeleteCards(evt) {
-  evt.target.closest('.element').remove();
-}
-
-// функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
-function handleLikeCard(evt) {
-  evt.target.classList.toggle('element__like_active');
-}*/
-/*
 // Функция, которая принимает аргументом объект который содержит name и link
 function createCard(cardsData) {
   // клонируем контент темплейт
@@ -156,56 +146,69 @@ class Card {
     return newCard;
   }
 
-
-// функция удаления карточек
-_handleDeleteCards(evt) {
-  evt.target.closest('.element').remove();
-}
-
-// функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
-_handleLikeCard(evt) {
-  evt.target.classList.toggle('element__like_active');
-}
-
-  __setEventListeners() {
-    // переменная и слушатель на кнопку удалить и лайк
-  this._newCard.querySelector('.element__delete').addEventListener('click', () => { 
-  this._handleDeleteCards});
-
-  this._newCard.querySelector('.element__like').addEventListener('click', () => { 
-  this._handleLikeCard});
-
-  // открытие картинки на весь экран
-  this._elementImg.addEventListener('click', () => {
-    this._openBidImg(this._name, this._link);
-  });
-  }
-
   // содержит один публичный метод, 
   // который возвращает полностью работоспособный и наполненный данными элемент карточки.
   generateCard() {
     this._newCard = this._getTemplate();
+    this._setEventListeners();
 
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
 
-    // здесь все ок
     this._titleImg.textContent = this._name;
     this._elementImg.alt = this._name;
     this._elementImg.src = this._link;
 
     return this._newCard;
   }
-};
 
-// функция по открытию попапа с картинкой 
-function openBidImg(name, link) {
-  bigImg.src = link;
-  bigImg.alt = name;
-  titleImg.textContent = name;
-  openPopupClass(popupImg);
+  // функция удаления карточек
+  _handleDeleteCards() {
+    this._newCard.target.closest('.element').remove();
 }
 
+  // функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
+  _handleLikeCard() {
+    this._newCard.target.classList.toggle('element__like_active');
+}
+
+
+
+  _setEventListeners() {
+  // переменная и слушатель на кнопку удалить и лайк
+    this._newCard.querySelector('.element__delete').addEventListener('click', () => {
+    this._handleDeleteCards()
+  })
+
+    this._newCard.querySelector('.element__like').addEventListener('click', () => {
+      this._handleLikeCard()
+    })
+
+  // открытие картинки на весь экран
+    this._newCard.querySelector('.element__image').addEventListener('click', () => {
+      this._openBidImg(this._name, this._link)
+    });
+  }
+  };
+
+// функция по открытию попапа с картинкой 
+  function openBidImg(name, link) {
+    bigImg.src = link;
+    bigImg.alt = name;
+    titleImg.textContent = name;
+    openPopupClass(popupImg);
+  }
+/*
+// функция удаления карточек
+function handleDeleteCards(evt) {
+  evt.target.closest('.element').remove();
+}
+
+// функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
+function handleLikeCard(evt) {
+  evt.target.classList.toggle('element__like_active');
+}
+*/
 // функция которая добавляет карточки в начало элемента elements 
 function renderCard(name,link) {
   const card = new Card (name, link, openBidImg);
