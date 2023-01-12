@@ -6,7 +6,6 @@ export class Card {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._like = cardsData.like;
-    //this._delete = cardsData.delete;
     this._templateSelector = templateSelector;
     this._openBidImg = openBidImg;
   }
@@ -30,7 +29,6 @@ export class Card {
 
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
-    //this._delete = this._newCard.querySelector('.element__delete');
 
     this._titleImg.textContent = this._name;
     this._elementImg.alt = this._name;
