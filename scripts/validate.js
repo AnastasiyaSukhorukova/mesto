@@ -68,7 +68,7 @@ inputList.forEach((inputElement) => {
 }
 
 // функция ответственная за включение валидации всех форм 
-function enableValidation(config) {
+export function enableValidation(config) {
   const formList = Array.from(document.querySelectorAll(config.formSelector));
   formList.forEach((formElement) => {
     setEventListeners(formElement, config);
