@@ -131,6 +131,8 @@ class Card {
   constructor(cardsData, templateSelector, openBidImg) {
     this._name = cardsData.name;
     this._link = cardsData.link;
+    this._like = cardsData.like;
+    this._delete = cardsData.delete;
     this._templateSelector = templateSelector;
     this._openBidImg = openBidImg;
   }
@@ -154,6 +156,7 @@ class Card {
 
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
+    this._delete = this._newCard.querySelector('.element__delete');
 
     this._titleImg.textContent = this._name;
     this._elementImg.alt = this._name;
@@ -164,24 +167,22 @@ class Card {
 
   // функция удаления карточек
   _handleDeleteCards() {
-    this._newCard.target.closest('.element').remove();
+    this._newCard.querySelector('.element__delete').target.closest('.element').remove();
 }
 
   // функция лайков, при мажатии на кликнутый элемент добавляется/убирается булевый модификатор 
   _handleLikeCard() {
-    this._newCard.target.classList.toggle('element__like_active');
+    this._newCard.querySelector('.element__like').classList.toggle('element__like_active');
 }
-
-
 
   _setEventListeners() {
   // переменная и слушатель на кнопку удалить и лайк
     this._newCard.querySelector('.element__delete').addEventListener('click', () => {
-    this._handleDeleteCards()
+    this._handleDeleteCards(this._delete)
   })
 
     this._newCard.querySelector('.element__like').addEventListener('click', () => {
-      this._handleLikeCard()
+      this._handleLikeCard(this._like)
     })
 
   // открытие картинки на весь экран
