@@ -22,27 +22,27 @@ export class FormValidator {
   }
 
   // функция скрытия ошибки 
-  _hideInputError(input) {
-    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
+  _hideInputError(input, error) {
     input.classList.remove(this._errorClass);
-    errorElement.textContent = ' ';
-    errorElement.classList.remove(this._inputErrorClass);
+    error.textContent = ' ';
+    error.classList.remove(this._inputErrorClass);
   }
 
   // функция показа ошибки
-  _showInputError(input, errorMessage) {
-    const errorElement = document.querySelector(`.${input.id}-error`);
+  _showInputError(input, error, errorMessage) {
     input.classList.add(this._errorClass);
-    errorElement.textContent = errorMessage; // либо передать вторым аргументом ошибку
-    errorElement.classList.add(this._inputErrorClass);
+    error.textContent = errorMessage; // либо передать вторым аргументом ошибку
+    error.classList.add(this._inputErrorClass);
   }
 
   // Если форма валидна, скрываем ошибку. Если нет, показываем
   _checkInputValid = (input) => {
+    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
+    console.log(errorElement);
     if (input.validity.valid) {
-      this._hideInputError(input);
+      this._hideInputError(input, errorElement);
     } else {
-      this._showInputError(input, input.validationMessage);
+      this._showInputError(input, errorElement, input.validationMessage);
     }
   }
 

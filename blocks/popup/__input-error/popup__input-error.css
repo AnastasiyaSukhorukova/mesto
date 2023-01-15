@@ -1,5 +1,6 @@
 .popup__input-error {
   padding: 0;
+  margin: 5px 0 13px 0;
   font-size: 12px;
   line-height: 14.52px;
   color: #ff0000;
