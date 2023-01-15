@@ -1,5 +1,5 @@
 import {Card} from './Card.js'
-import {FormValidator} from './validate.js'
+import {FormValidator} from './FormValidator.js'
 
 // переменные попапов 
 const popupEdit = document.querySelector('.profile-popup');
