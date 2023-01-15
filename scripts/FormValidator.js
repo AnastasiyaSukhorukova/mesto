@@ -30,10 +30,10 @@ export class FormValidator {
   }
 
   // функция показа ошибки
-  _showInputError(input) {
-    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
+  _showInputError(input, errorMessage) {
+    const errorElement = document.querySelector(`.${input.id}-error`);
     input.classList.add(this._errorClass);
-    errorElement.textContent = this._validationMessage; // либо передать вторым аргументом ошибку
+    errorElement.textContent = errorMessage; // либо передать вторым аргументом ошибку
     errorElement.classList.add(this._inputErrorClass);
   }
 
@@ -42,47 +42,36 @@ export class FormValidator {
     if (input.validity.valid) {
       this._hideInputError(input);
     } else {
-      this._showInputError(input);
+      this._showInputError(input, input.validationMessage);
     }
   }
 
-  // проверяет если хотя бы одно из полей не прошло валидацию - НЕ ИСПРАВЛЯЛА ДАЛЬШЕ
-  _hasInputValid(inputList) {
-    return inputList.some((input) => {
+  // проверяет если хотя бы одно из полей не прошло валидацию 
+  _hasInputValid() {
+    return this._inputList.some((input) => {
       return !input.validity.valid;
   })
   };
 
-  // активное состояние кнопки
-  _enableSubmitButton() {
-    if (this._hasInputValid(this._inputList)) {
-      this._buttonElement.classList.add(this._inactiveButtonClass);
-      this._buttonElement.disabled = true;
-    }
-  }
-
-// неактивное состояние кнопки
-  _disableSubmitButton() {
-    if (!this._hasInputValid(this._inputList)) {
-      this._buttonElement.classList.remove(this._inactiveButtonClass);
-      this._buttonElement.disabled = false;
-    }
-  }
-
 // функция которая меняет состояние кнопки
-  _toogleButtonState = () => {
-    this._enableSubmitButton();
-    this._disableSubmitButton();
+  _toogleButtonState = (inputList, button) => {
+    if (this._hasInputValid(inputList)) {
+      button.classList.add(this._inactiveButtonClass);
+      button.disabled = true;
+    } else {
+      button.classList.remove(this._inactiveButtonClass);
+      button.disabled = false;
+    }
 }
 
 // проверяем валидность полей ввода
   _setEventListeners() {
 // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
-  this._toogleButtonState();
+  this._toogleButtonState(this._inputList, this._buttonElement);
   this._inputList.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputValid(input);
-      this._toogleButtonState();
+      this._toogleButtonState(this._inputList, this._buttonElement);
     });
   });
   }

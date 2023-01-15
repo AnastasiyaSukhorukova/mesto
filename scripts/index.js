@@ -170,8 +170,13 @@ const validationConfig = {
   inputErrorClass: 'popup__input-error',
   errorClass: 'popup__error_visible'
 }
-// вызов функции по валидации форм
-enableValidation(validationConfig); 
+
+// проверка валидации для каждой формы
+const profileValidation = new FormValidator(validationConfig, profileForm);
+profileValidation.enableValidation();
+
+const addValidation = new FormValidator(validationConfig, formElementAdd);
+addValidation.enableValidation();
 
 
 
