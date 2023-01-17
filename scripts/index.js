@@ -12,8 +12,8 @@ const buttonAdd = document.querySelector('.profile__button-add');
 
 // закрытие попапов
 const profileCloseButton = popupEdit.querySelector('.popup__close');
-const closeElementAdd = popupAdd.querySelector('.popup__close');
-const closeBigImg = popupImg.querySelector('.popup__close');
+const cardElement = popupAdd.querySelector('.popup__close');
+const elementBigImg = popupImg.querySelector('.popup__close');
 
 // переменные для хранения информации в попапах и формах
 const profileForm = document.querySelector('.popup__form');
@@ -21,17 +21,14 @@ const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const formInputCardName = document.querySelector('.popup__input_type_title');
 const formInputCardLink = document.querySelector('.popup__input_type_link');
-const saveButton = document.querySelector('.popup__save');
 const userName = document.querySelector('.profile__intro-title');
 const userJob = document.querySelector('.profile__intro-subtitle');
- const titleImg = document.querySelector('.popup-image__title');
- const bigImg = document.querySelector('.popup-image__img');
+const titleImg = document.querySelector('.popup-image__title');
+const bigImg = document.querySelector('.popup-image__img');
 
 // переменные для добавления новых карточек
 const elementCards = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__add-form');
-const inputAdd = document.querySelector('.popup__add-input');
-const buttonDel = document.querySelector('.element__delete');
 
 const initialCards = [
   {
@@ -145,11 +142,11 @@ function openCardAdd() {
 
 buttonAdd.addEventListener('click', openCardAdd);
 
-closeElementAdd.addEventListener('click', function() {
+cardElement.addEventListener('click', function() {
   closePopupClass(popupAdd);
 })
 
-closeBigImg.addEventListener('click', function() {
+elementBigImg.addEventListener('click', function() {
   closePopupClass(popupImg);
 })
 

@@ -25,10 +25,10 @@ export class Card {
   // который возвращает полностью работоспособный и наполненный данными элемент карточки.
   generateCard() {
     this._newCard = this._getTemplate();
-    this._setEventListeners();
 
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
+    this._setEventListeners();
 
     this._titleImg.textContent = this._name;
     this._elementImg.alt = this._name;
@@ -39,12 +39,13 @@ export class Card {
 
   // функция удаления карточек
   _handleDeleteCards() {
-    this._newCard.querySelector('.element__delete').closest('.element').remove();
+    this._newCard.remove();
+    this._newCard = null;
 }
 
   // функция лайков, при нажатии на кликнутый элемент добавляется/убирается булевый модификатор 
   _handleLikeCard() {
-    this._newCard.querySelector('.element__like').classList.toggle('element__like_active');
+    this._likeButton.classList.toggle('element__like_active');
 }
 
   _setEventListeners() {
@@ -53,12 +54,14 @@ export class Card {
     this._handleDeleteCards()
   })
 
-    this._newCard.querySelector('.element__like').addEventListener('click', () => {
+  this._likeButton = this._newCard.querySelector('.element__like');
+  this._likeButton.addEventListener('click', () => {
       this._handleLikeCard(this._like)
     })
 
   // открытие картинки на весь экран
-    this._newCard.querySelector('.element__image').addEventListener('click', () => {
+  this._cardImage = this._newCard.querySelector('.element__image');
+  this._cardImage.addEventListener('click', () => {
       this._openBidImg(this._name, this._link)
     });
   }
