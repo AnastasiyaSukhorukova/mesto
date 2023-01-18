@@ -27,7 +27,7 @@ const titleImg = document.querySelector('.popup-image__title');
 const bigImg = document.querySelector('.popup-image__img');
 
 // переменные для добавления новых карточек
-const elementCards = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__add-form');
 
 const initialCards = [
@@ -105,7 +105,7 @@ function handleProfileFormSubmit (evt) {
 function renderCard(name,link) {
   const card = new Card (name, link, openBidImg);
   const cardElement = card.generateCard();
-  elementCards.prepend(cardElement);
+  cardsContainer.prepend(cardElement);
 }
 
 // с помощью forEach перебираем массив 

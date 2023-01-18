@@ -38,7 +38,6 @@ export class FormValidator {
   // Если форма валидна, скрываем ошибку. Если нет, показываем
   _checkInputValid = (input) => {
     const errorElement = this._formElement.querySelector(`.${input.id}-error`);
-    console.log(errorElement);
     if (input.validity.valid) {
       this._hideInputError(input, errorElement);
     } else {
@@ -54,24 +53,24 @@ export class FormValidator {
   };
 
 // функция которая меняет состояние кнопки
-  _toogleButtonState = (inputList, button) => {
-    if (this._hasInputValid(inputList)) {
-      button.classList.add(this._inactiveButtonClass);
-      button.disabled = true;
+  _toogleButtonState = () => {
+    if (this._hasInputValid(this._inputList)) {
+      this._buttonElement.classList.add(this._inactiveButtonClass);
+      this._buttonElement.disabled = true;
     } else {
-      button.classList.remove(this._inactiveButtonClass);
-      button.disabled = false;
+      this._buttonElement.classList.remove(this._inactiveButtonClass);
+      this._buttonElement.disabled = false;
     }
 }
 
 // проверяем валидность полей ввода
   _setEventListeners() {
 // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
-  this._toogleButtonState(this._inputList, this._buttonElement);
+  this._toogleButtonState();
   this._inputList.forEach((input) => {
     input.addEventListener('input', () => {
       this._checkInputValid(input);
-      this._toogleButtonState(this._inputList, this._buttonElement);
+      this._toogleButtonState();
     });
   });
   }
