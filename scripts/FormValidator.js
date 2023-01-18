@@ -22,10 +22,11 @@ export class FormValidator {
   }
 
   // функция скрытия ошибки 
-  _hideInputError(input, error) {
+  _hideInputError(input) {
+    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
     input.classList.remove(this._errorClass);
-    error.textContent = ' ';
-    error.classList.remove(this._inputErrorClass);
+    errorElement.textContent = ' ';
+    errorElement.classList.remove(this._inputErrorClass);
   }
 
   // функция показа ошибки
@@ -39,7 +40,7 @@ export class FormValidator {
   _checkInputValid = (input) => {
     const errorElement = this._formElement.querySelector(`.${input.id}-error`);
     if (input.validity.valid) {
-      this._hideInputError(input, errorElement);
+      this._hideInputError(input);
     } else {
       this._showInputError(input, errorElement, input.validationMessage);
     }
@@ -63,6 +64,15 @@ export class FormValidator {
     }
 }
 
+resetValidation() {
+  this._toggleButtonState(); //управляем кнопкой 
+
+  this._inputList.forEach((input) => {
+    this._hideInputError(input); //очищаем ошибки 
+  });
+} 
+
+
 // проверяем валидность полей ввода
   _setEventListeners() {
 // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
@@ -77,6 +87,6 @@ export class FormValidator {
 
 // функция ответственная за включение валидации всех форм 
   enableValidation = () => {
-    this._setEventListeners()
+    this._setEventListeners();
   }
 }

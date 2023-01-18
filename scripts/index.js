@@ -17,6 +17,7 @@ const elementBigImg = popupImg.querySelector('.popup__close');
 
 // переменные для хранения информации в попапах и формах
 const profileForm = document.querySelector('.popup__form');
+const elementInput = document.querySelector('.popup__input');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const formInputCardName = document.querySelector('.popup__input_type_title');
@@ -101,15 +102,21 @@ function handleProfileFormSubmit (evt) {
     openPopupClass(popupImg);
   }
 
-// функция которая добавляет карточки в начало элемента elements 
-function renderCard(name,link) {
-  const card = new Card (name, link, openBidImg);
-  const cardElement = card.generateCard();
-  cardsContainer.prepend(cardElement);
-}
+// функция которая добавляет карточки в начало элемента elements  
 
-// с помощью forEach перебираем массив 
- initialCards.forEach(renderCard);
+function createCard(item) { 
+  const card = new Card (item, '#cards', openBidImg); 
+  const cardElement = card.generateCard(); 
+  return cardElement;
+} 
+
+// функция которая добавляет карточки в начало элемента elements  
+function renderCard(item) { 
+  cardsContainer.prepend(createCard(item)); 
+} 
+
+// с помощью forEach перебираем массив  
+initialCards.forEach(renderCard); 
 
 // функция отправки формы
 function handleFormSubmitCard (evt) {
@@ -130,6 +137,7 @@ buttonEdit.addEventListener('click', function() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
   openPopupClass(popupEdit);
+  //resetValidation(elementInput);
 });
 
 profileCloseButton.addEventListener('click', function() {
@@ -174,6 +182,7 @@ profileValidation.enableValidation();
 
 const addValidation = new FormValidator(validationConfig, formElementAdd);
 addValidation.enableValidation();
+
 
 
 

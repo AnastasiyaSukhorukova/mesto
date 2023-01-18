@@ -13,7 +13,7 @@ export class Card {
   // содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
   _getTemplate() {
     const newCard = document
-      .querySelector('#cards')
+      .querySelector(this._templateSelector)
       .content
       .querySelector('.element')
       .cloneNode(true);
