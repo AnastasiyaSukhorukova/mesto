@@ -105,7 +105,7 @@ function handleProfileFormSubmit (evt) {
 function renderCard(name,link) {
   const card = new Card (name, link, openBidImg);
   const cardElement = card.generateCard();
-  document.querySelector('.elements').prepend(cardElement);
+  elementCards.prepend(cardElement);
 }
 
 // с помощью forEach перебираем массив 
