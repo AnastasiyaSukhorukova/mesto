@@ -1,6 +1,7 @@
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
 
+// имена переменных называются со существительных, функции с глагола
 // переменные попапов 
 const popupEdit = document.querySelector('.profile-popup');
 const popupAdd = document.querySelector('.popup-add');
@@ -9,15 +10,10 @@ const popupImg = document.querySelector('.popup-image');
 // открытие попапов
 const buttonEdit = document.querySelector('.profile__button-edit');
 const buttonAdd = document.querySelector('.profile__button-add');
-
-// закрытие попапов
-const profileCloseButton = popupEdit.querySelector('.popup__close');
-const cardElement = popupAdd.querySelector('.popup__close');
-const elementBigImg = popupImg.querySelector('.popup__close');
+const buttonCloseList = document.querySelectorAll('.popup__close'); 
 
 // переменные для хранения информации в попапах и формах
 const profileForm = document.querySelector('.popup__form');
-const elementInput = document.querySelector('.popup__input');
 const nameInput = document.querySelector('.popup__input_type_name');
 const jobInput = document.querySelector('.popup__input_type_job');
 const formInputCardName = document.querySelector('.popup__input_type_title');
@@ -128,35 +124,29 @@ function handleFormSubmitCard (evt) {
   
   evt.target.reset();
   closePopupClass(popupAdd);
-  evt.submitter.disabled = true;
-  evt.submitter.classList.add('popup__save_disabled');
 }
 
 // слушатели кнопок открыть-закрыть
 buttonEdit.addEventListener('click', function() {
   nameInput.value = userName.textContent;
   jobInput.value = userJob.textContent;
+  profileValidation.resetValidation();
   openPopupClass(popupEdit);
-  //resetValidation(elementInput);
 });
 
-profileCloseButton.addEventListener('click', function() {
-  closePopupClass(popupEdit);
-})
-
 function openCardAdd() {
+  addValidation.resetValidation();
   openPopupClass(popupAdd);
 }
 
 buttonAdd.addEventListener('click', openCardAdd);
 
-cardElement.addEventListener('click', function() {
-  closePopupClass(popupAdd);
-})
-
-elementBigImg.addEventListener('click', function() {
-  closePopupClass(popupImg);
-})
+// перебираем все попапы, навешиваем закрытие крестиком и кликом на оверлей
+buttonCloseList.forEach(btn => {
+  const popup = btn.closest('.popup');
+  popup.addEventListener('mousedown', closePopupOverlay);
+  btn.addEventListener('click', () => closePopupClass(popup)); 
+}) 
 
 // слушатель закрытия попапа кликом на оверлей
 popupEdit.addEventListener('mousedown', closePopupOverlay);
@@ -180,8 +170,12 @@ const validationConfig = {
 const profileValidation = new FormValidator(validationConfig, profileForm);
 profileValidation.enableValidation();
 
+
 const addValidation = new FormValidator(validationConfig, formElementAdd);
 addValidation.enableValidation();
+
+
+
 
 
 

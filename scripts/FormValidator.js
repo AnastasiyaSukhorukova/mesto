@@ -30,19 +30,19 @@ export class FormValidator {
   }
 
   // функция показа ошибки
-  _showInputError(input, error, errorMessage) {
+  _showInputError(input, errorMessage) {
+    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
     input.classList.add(this._errorClass);
-    error.textContent = errorMessage; // либо передать вторым аргументом ошибку
-    error.classList.add(this._inputErrorClass);
+    errorElement.textContent = errorMessage; // либо передать вторым аргументом ошибку
+    errorElement.classList.add(this._inputErrorClass);
   }
 
   // Если форма валидна, скрываем ошибку. Если нет, показываем
   _checkInputValid = (input) => {
-    const errorElement = this._formElement.querySelector(`.${input.id}-error`);
     if (input.validity.valid) {
       this._hideInputError(input);
     } else {
-      this._showInputError(input, errorElement, input.validationMessage);
+      this._showInputError(input, input.validationMessage);
     }
   }
 
@@ -64,15 +64,6 @@ export class FormValidator {
     }
 }
 
-resetValidation() {
-  this._toggleButtonState(); //управляем кнопкой 
-
-  this._inputList.forEach((input) => {
-    this._hideInputError(input); //очищаем ошибки 
-  });
-} 
-
-
 // проверяем валидность полей ввода
   _setEventListeners() {
 // Вызовем toggleButtonState, чтобы не ждать ввода данных в поля
@@ -83,6 +74,14 @@ resetValidation() {
       this._toogleButtonState();
     });
   });
+  }
+
+  resetValidation() {
+    this._toogleButtonState(); //управляем кнопкой 
+    
+    this._inputList.forEach((input) => {
+      this._hideInputError(input); //очищаем ошибки 
+      })
   }
 
 // функция ответственная за включение валидации всех форм 
