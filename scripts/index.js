@@ -148,11 +148,6 @@ buttonCloseList.forEach(btn => {
   btn.addEventListener('click', () => closePopupClass(popup)); 
 }) 
 
-// слушатель закрытия попапа кликом на оверлей
-popupEdit.addEventListener('mousedown', closePopupOverlay);
-popupAdd.addEventListener('mousedown', closePopupOverlay);
-popupImg.addEventListener('mousedown', closePopupOverlay);
-
 //слушатели отправки форм
 profileForm.addEventListener('submit', handleProfileFormSubmit);
 formElementAdd.addEventListener('submit', handleFormSubmitCard);
