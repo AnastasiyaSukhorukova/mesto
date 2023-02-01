@@ -1,6 +1,7 @@
 import '../pages/index.css'; // добавьте импорт главного файла стилей 
 import {Card} from './Card.js'
 import {FormValidator} from './FormValidator.js'
+import Section from './Section.js'
 
 // имена переменных называются со существительных, функции с глагола
 // переменные попапов 
@@ -25,7 +26,7 @@ const titleImg = document.querySelector('.popup-image__title');
 const bigImg = document.querySelector('.popup-image__img');
 
 // переменные для добавления новых карточек
-const cardsContainer = document.querySelector('.elements');
+//const cardsContainer = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__add-form');
 
 const initialCards = [
@@ -54,6 +55,17 @@ const initialCards = [
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
   }
 ];
+
+const section = new Section ({
+  items: initialCards, 
+  renderer: (item) => {
+    const card = new Card (item, '#cards', openBidImg); 
+    const cardElement = card.generateCard();
+    section.addItem(cardElement);
+  }
+}, '.elements');
+
+section.renderItems();
 
 // открытие попапов
 function openPopupClass(popup) {
@@ -101,24 +113,10 @@ function handleProfileFormSubmit (evt) {
 
 // функция которая добавляет карточки в начало элемента elements  
 
-function createCard(item) { 
-  const card = new Card (item, '#cards', openBidImg); 
-  const cardElement = card.generateCard(); 
-  return cardElement;
-} 
-
-// функция которая добавляет карточки в начало элемента elements  
-function renderCard(item) { 
-  cardsContainer.prepend(createCard(item)); 
-} 
-
-// с помощью forEach перебираем массив  
-initialCards.forEach(renderCard); 
-
 // функция отправки формы
 function handleFormSubmitCard (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  renderCard({
+  section.renderItems({
     name: formInputCardName.value,
     link: formInputCardLink.value,
   });
@@ -169,7 +167,6 @@ profileValidation.enableValidation();
 
 const addValidation = new FormValidator(validationConfig, formElementAdd);
 addValidation.enableValidation();
-
 
 
 
