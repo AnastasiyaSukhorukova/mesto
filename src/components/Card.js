@@ -1,6 +1,6 @@
 // класс Card, который создаёт карточку с текстом и ссылкой на изображение
 
-export class Card {
+export default class Card {
   // принимает в конструктор её данные и селектор её template-элемента, функцию по открытию картинки на весь экран;
   constructor(cardsData, templateSelector, openBidImg) {
     this._name = cardsData.name;

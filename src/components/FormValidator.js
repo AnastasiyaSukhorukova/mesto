@@ -7,7 +7,7 @@
 Для каждой проверяемой формы создайте экземпляр класса FormValidator.
 */
 
-export class FormValidator {
+export default class FormValidator {
   constructor(config, formElement) {
     this._config = config;
     this._formElement = formElement;

@@ -1,7 +1,7 @@
 import '../pages/index.css'; // добавьте импорт главного файла стилей 
-import {Card} from './Card.js'
-import {FormValidator} from './FormValidator.js'
-import Section from './Section.js'
+import Card from '../components/Card.js'
+import FormValidator from '../components/FormValidator.js'
+import Section from '../components/Section.js'
 
 // имена переменных называются со существительных, функции с глагола
 // переменные попапов 
@@ -26,7 +26,7 @@ const titleImg = document.querySelector('.popup-image__title');
 const bigImg = document.querySelector('.popup-image__img');
 
 // переменные для добавления новых карточек
-//const cardsContainer = document.querySelector('.elements');
+const cardsContainer = document.querySelector('.elements');
 const formElementAdd = document.querySelector('.popup__add-form');
 
 const initialCards = [
@@ -56,15 +56,25 @@ const initialCards = [
   }
 ];
 
+function createCard(item) {  
+  const card = new Card (item, '#cards', openBidImg);  
+  const cardElement = card.generateCard();  
+  return cardElement; 
+}
+
+function renderCard(item) {  
+  const cardItem = createCard(item);
+  section.addItem(cardItem);  
+  return renderCard;
+}  
+
 const section = new Section ({
   items: initialCards, 
   renderer: (item) => {
-    const card = new Card (item, '#cards', openBidImg); 
-    const cardElement = card.generateCard();
-    section.addItem(cardElement);
+    createCard(item);
+    section.addItem(createCard(item)); 
   }
-}, '.elements');
-
+}, cardsContainer);
 section.renderItems();
 
 // открытие попапов
@@ -109,14 +119,12 @@ function handleProfileFormSubmit (evt) {
     bigImg.alt = name;
     titleImg.textContent = name;
     openPopupClass(popupImg);
-  }
-
-// функция которая добавляет карточки в начало элемента elements  
+  } 
 
 // функция отправки формы
 function handleFormSubmitCard (evt) {
   evt.preventDefault(); // Эта строчка отменяет стандартную отправку формы.
-  section.renderItems({
+  renderCard({
     name: formInputCardName.value,
     link: formInputCardLink.value,
   });
