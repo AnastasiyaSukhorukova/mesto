@@ -2,6 +2,10 @@ import '../pages/index.css'; // добавьте импорт главного �
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
 import Section from '../components/Section.js'
+//import Popup from '../components/Popup.js'
+import PopupWithImage from '../components/PopupWithImage.js'
+
+
 
 // имена переменных называются со существительных, функции с глагола
 // переменные попапов 
@@ -56,8 +60,15 @@ const initialCards = [
   }
 ];
 
+// Селекторы
+//const popupImageSelector = '.popup-image';
+
+// Экземпляры классов
+const popupWithImage = new PopupWithImage('.popup-image');
+//popupWithImage.setEventListeners();
+
 function createCard(item) {  
-  const card = new Card (item, '#cards', openBidImg);  
+  const card = new Card (item, '#cards', handleCardClick);  
   const cardElement = card.generateCard();  
   return cardElement; 
 }
@@ -83,6 +94,20 @@ function openPopupClass(popup) {
   document.addEventListener('keydown', closePopupClassEsc);
 }
 
+function openCardAdd() {
+  addValidation.resetValidation();
+  openPopupClass(popupAdd);
+}
+
+// функция по открытию попапа с картинкой 
+function handleCardClick (name, link) {
+  bigImg.src = link;
+  bigImg.alt = name;
+  titleImg.textContent = name;
+  openPopupClass(popupImg);
+  popupWithImage.open(name, link);
+} 
+
 // закрытие попапов
 function closePopupClass(popup) {
   popup.classList.remove('popup_opened');
@@ -97,7 +122,7 @@ function closePopupClassEsc(evt, popupEsc) {
   }
 }
 
-// закрытие попапов кликом на оверлей - она должна быть в глобальной области 
+// закрытие попапов кликом на оверлей 
 function closePopupOverlay(evt) {
   if (evt.target.classList.contains('popup_opened')) {
     closePopupClass(evt.target);
@@ -112,14 +137,6 @@ function handleProfileFormSubmit (evt) {
 
   closePopupClass(popupEdit);
 }
-
-// функция по открытию попапа с картинкой 
-  function openBidImg(name, link) {
-    bigImg.src = link;
-    bigImg.alt = name;
-    titleImg.textContent = name;
-    openPopupClass(popupImg);
-  } 
 
 // функция отправки формы
 function handleFormSubmitCard (evt) {
@@ -140,11 +157,6 @@ buttonEdit.addEventListener('click', function() {
   profileValidation.resetValidation();
   openPopupClass(popupEdit);
 });
-
-function openCardAdd() {
-  addValidation.resetValidation();
-  openPopupClass(popupAdd);
-}
 
 buttonAdd.addEventListener('click', openCardAdd);
 

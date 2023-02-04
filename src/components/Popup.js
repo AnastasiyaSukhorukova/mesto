@@ -8,20 +8,18 @@ export default class Popup {
 
   open() {
     this._popupElement.classList.add('popup-opened');
-    console.log(this._popupElement);
-    document.addEventListener('keydown', this._handleEscClose());
+    document.addEventListener('keydown', (evt) => {this._handleEscClose(evt)});
   }
 
   close() {
     this._popupElement.classList.remove('popup-opened');
-    document.removeEventListener('keydown', this._handleEscClose());
+    document.removeEventListener('keydown', (evt) => {this._handleEscClose(evt)});
   }
 
   // приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
 
   _handleEscClose = (evt) => {
     if (evt.key === 'Escape') {
-     //const popupOpened = document.querySelector(this._selectorPopup); // не закрывается при клике на Esc
       this.close();
     }
   }
@@ -30,9 +28,7 @@ export default class Popup {
   //Модальное окно также закрывается при клике на затемнённую область вокруг формы.
 
   setEventListeners() {
-    //buttonCloseList.forEach(btn => {
-     // const popup = btn.closest('.popup');
-      this._popupElement.addEventListener('mousedown', (evt) => {
+    this._popupElement.addEventListener('mousedown', (evt) => {
         if (evt.target.classList.contains('popup')) {
           this.close();
         }
@@ -40,3 +36,4 @@ export default class Popup {
       this._popupButtonClass.addEventListener('click', () => this.close()); 
   };
 }
+
