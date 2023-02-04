@@ -2,12 +2,12 @@
 
 export default class Card {
   // принимает в конструктор её данные и селектор её template-элемента, функцию по открытию картинки на весь экран;
-  constructor(cardsData, templateSelector, openBidImg) {
+  constructor(cardsData, templateSelector, handleCardClick) {
     this._name = cardsData.name;
     this._link = cardsData.link;
     this._like = cardsData.like;
     this._templateSelector = templateSelector;
-    this._openBidImg = openBidImg;
+    this._handleCardClick = handleCardClick;
   }
 
   // содержит приватные методы, которые работают с разметкой, устанавливают слушателей событий;
@@ -63,7 +63,7 @@ export default class Card {
 
   // открытие картинки на весь экран
   this._elementImg.addEventListener('click', () => {
-      this._openBidImg(this._name, this._link)
+      this._handleCardClick(this._name, this._link)
     });
   }
   };
