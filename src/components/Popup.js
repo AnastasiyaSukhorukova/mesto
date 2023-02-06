@@ -3,17 +3,17 @@
 export default class Popup {
   constructor(selectorPopup) {
     this._popupElement = document.querySelector(selectorPopup);
-    this._popupButtonClass = this._popupElement.querySelector('.popup__close');
+   // this._popupButtonClass = this._popupElement.querySelector('.popup__close');
   }
 
   open() {
-    this._popupElement.classList.add('popup-opened');
-    document.addEventListener('keydown', (evt) => {this._handleEscClose(evt)});
+    this._popupElement.classList.add('popup_opened');
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
   close() {
-    this._popupElement.classList.remove('popup-opened');
-    document.removeEventListener('keydown', (evt) => {this._handleEscClose(evt)});
+    this._popupElement.classList.remove('popup_opened');
+    document.removeEventListener('keydown', this._handleEscClose);
   }
 
   // приватный метод _handleEscClose, который содержит логику закрытия попапа клавишей Esc.
@@ -24,16 +24,17 @@ export default class Popup {
     }
   }
 
+  _handleOverlayClick = (evt) => {
+    if (!evt.target.closest('.popup__container')) {
+      this.close();
+    }
+  }
+
   //Содержит публичный метод setEventListeners, который добавляет слушатель клика иконке закрытия попапа. 
   //Модальное окно также закрывается при клике на затемнённую область вокруг формы.
 
   setEventListeners() {
-    this._popupElement.addEventListener('mousedown', (evt) => {
-        if (evt.target.classList.contains('popup')) {
-          this.close();
-        }
-      });
-      this._popupButtonClass.addEventListener('click', () => this.close()); 
+    this._popupElement.addEventListener('click', this._handleOverlayClick);
   };
 }
 
