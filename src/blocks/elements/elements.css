@@ -4,6 +4,7 @@
   box-sizing: border-box;
   max-width: 880px;
   width: 100%;
+  min-height: 100vh;
   display: grid;
   grid-column-gap: 17px;
   grid-row-gap: 20px;

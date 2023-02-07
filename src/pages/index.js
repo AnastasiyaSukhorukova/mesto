@@ -50,12 +50,8 @@ const popupWithFormEdit = new PopupWithForm('.profile-popup', handleProfileFormS
 popupWithFormEdit.setEventListeners();
 
 // функция отправки формы
-function handleFormSubmitCard () {
-  const newCard = {
-    name: formInputCardName.value, 
-    link: formInputCardLink.value
-  }
-  renderCard(newCard);
+function handleFormSubmitCard (values) {
+  renderCard(values);
   popupWithFormAdd.close();
 }
 
