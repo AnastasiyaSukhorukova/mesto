@@ -22,6 +22,9 @@ export const jobInput = document.querySelector('.popup__input_type_job');
 export const formInputCardName = document.querySelector('.popup__input_type_title');
 export const formInputCardLink = document.querySelector('.popup__input_type_link');
 
+// переменные для удаления карточек
+export const elementDelete = document.querySelector('.element__delete');
+
 // переменные для добавления новых карточек
 export const cardsContainer = document.querySelector('.elements');
 

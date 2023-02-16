@@ -51,7 +51,7 @@ export default class Card {
 }
 
   _setEventListeners() {
-  // переменная и слушатель на кнопку удалить и лайк
+  // переменная и слушатель на кнопку удалить (на подтверждение) и лайк
     this._newCard.querySelector('.element__delete').addEventListener('click', () => {
     this._handleDeleteCards()
   })

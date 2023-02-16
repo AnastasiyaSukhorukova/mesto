@@ -2,7 +2,7 @@ import '../pages/index.css'; // импорт главного файла сти�
 
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
-  formInputCardLink, cardsContainer, initialCards, validationConfig} from '../utils/constants.js'
+  formInputCardLink, cardsContainer, initialCards, validationConfig, elementDelete} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -10,6 +10,7 @@ import Section from '../components/Section.js'
 import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
+import Api from '../components/Api.js'
 
 // Экземпляры классов
 const popupWithImage = new PopupWithImage('.popup-image');
@@ -66,10 +67,10 @@ const userInfo = new UserInfo ({
 // слушатели открытия-закрытия попапов форм
 buttonEditOpen.addEventListener('click', () => {
   profileValidation.resetValidation();
-  const {name, info} = userInfo.getUserInfo();
+  const {name, about} = userInfo.getUserInfo();
 
   nameInput.value = name;
-  jobInput.value = info;
+  jobInput.value = about;
   popupWithFormEdit.open();
 });
 
@@ -93,4 +94,23 @@ profileValidation.enableValidation();
 const addValidation = new FormValidator(validationConfig, formElementAdd);
 addValidation.enableValidation();
 
+/*
+// создание экземляра класса для открытия попапа удаления карточки
+const popupWithDeleteCard = new PopupWithConfirmation('.popup-delete');
+popupWithDeleteCard.setEventListeners();*/
+
+// открытие попапа удаления карточки
+elementDelete.addEventListener('click', () => {
+  popupWithDeleteCard.open();
+})
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182',
+    'Content-Type': 'application/json'
+  }
+
+
+});
 
