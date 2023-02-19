@@ -14,10 +14,12 @@ export const buttonCloseAdd = popupAdd.querySelector('.popup__close');
 
 export const profileForm = document.querySelector('.popup__edit-form');
 export const formElementAdd = document.querySelector('.popup__add-form');
+export const avatarFormElement = document.querySelector('.popup__avatar-form');
 
 // инпуты внутри попапов и формы
 export const nameInput = document.querySelector('.popup__input_type_name');
 export const jobInput = document.querySelector('.popup__input_type_job');
+export const avatarImg = document.querySelector('.popup__input_type_avatar');
 
 export const formInputCardName = document.querySelector('.popup__input_type_title');
 export const formInputCardLink = document.querySelector('.popup__input_type_link');

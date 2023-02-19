@@ -16,39 +16,84 @@ export default class Api {
     this.headers = options.headers;
   }
 
+  // Получение карточки
   getInitialCards() {
-    return fetch(this.url, {headers: this.headers}) // обязатель return
+    return fetch(`${this.url}/cards`, {headers: this.headers}) 
     .then(handleResponse);
   }
 
+  // создание карточек
   createInitialCards(data) {
-    return fetch(this.url, {
+    return fetch(`${this.url}/cards`, {
       method: 'POST',
       headers: this.headers, 
-      body: JSON.stringify(data)
-    })  
-    .then(handleResponse);
-  }
-
-  // редактирование профиля
-  updateCards(data) {
-    return fetch(this.url, {
-      method: 'PATCH',
-      headers: this.headers, 
-      body: JSON.stringify(data)
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
     })  
     .then(handleResponse);
   }
 
   // удаление карточки
-  deleteCard(data) {
-    return fetch(this.url, {
+  deleteCard(cardId) {
+    return fetch(`${this.url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this.headers, 
-      body: JSON.stringify(data)
+      headers: this.headers
     })  
     .then(handleResponse);
   }
 
-  // другие методы работы с API
+  // получение данных о пользователе с сервера
+  getInfoUser() {
+    return fetch(`${this.url}/users/me`, {
+      method: 'GET',
+      headers: this.headers, 
+    })  
+    .then(handleResponse);
+  }
+
+  // редактирование данных пользователя с сервера
+  editInfoUser(data) {
+    return fetch(`${this.url}/users/me`, {
+      method: 'PATCH',
+      headers: this.headers, 
+      body: JSON.stringify({
+        name: data.name,
+        link: data.link
+      })
+    })  
+    .then(handleResponse);
+  }
+
+  // изменение аватара
+  editAvatarUser(url) {
+    return fetch(`${this.url}/users/me/avatar`, {
+      method: 'PATCH',
+      headers: this.headers, 
+      body: JSON.stringify({
+        avatar: url
+      })
+    })  
+    .then(handleResponse);
+  }
+
+  // Поставить лайк
+  addLikeCard() {
+    return fetch(`${this.url}/cards/${cardId}/likes`, {
+      method: 'PUT',
+      headers: this.headers, 
+    })  
+    .then(handleResponse);
+  }
+
+  // Убрать лайк
+  deleteLikeCard() {
+    return fetch(`${this.url}/cards/${cardId}/likes`, {
+      method: 'DELETE',
+      headers: this.headers, 
+    })  
+    .then(handleResponse);
+  }
+  
 }

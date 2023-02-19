@@ -3,7 +3,6 @@
 export default class Popup {
   constructor(selectorPopup) {
     this._popupElement = document.querySelector(selectorPopup);
-   // this._popupButtonClass = this._popupElement.querySelector('.popup__close');
   }
 
   open() {

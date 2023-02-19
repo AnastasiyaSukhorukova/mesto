@@ -1,6 +1,7 @@
 .profile__avatar-container {
   background-image: url('../../../images/VectorAvatar.svg');
-  z-index: 1;
+  max-width: 120px;
+  max-height: 120px;
   background-repeat: no-repeat;
   background-position: center;
   top: 0;
