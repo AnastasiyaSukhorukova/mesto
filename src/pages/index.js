@@ -3,7 +3,7 @@ import '../pages/index.css'; // импорт главного файла сти�
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
   formInputCardLink, cardsContainer, validationConfig, elementDelete, 
-  avatarImg, avatarFormElement} from '../utils/constants.js'
+  avatarImg, avatarFormElement, buttonEditAvatar} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -31,16 +31,16 @@ api.getInitialCards()
 })
 .catch(() => {
   console.log('Произошла ошибка'); // выведем ошибку в консоль
-  }); */
-
+  }); 
+*/
 let userId;
 
 Promise.all([api.getInfoUser(), api.getInitialCards()])
-.then(([user, cardList]) => {
+.then(([user, initialCards]) => {
   userInfo.setUserInfo(user.name, user.about)
   userInfo.setUserAvatar(user.avatar)
   userId = user._id
-  cardList.forEach((item) => {
+  initialCards.forEach((item) => {
     createCard(item, userId)
   })
   .catch(() => {
@@ -139,14 +139,40 @@ const popupWithDeleteCard = new PopupWithConfirmation('.popup-delete', (id, card
 });
 popupWithDeleteCard.setEventListeners();
 
+/*
 // функция отправки формы с инф-цией профиля
 function handleProfileFormSubmit (formValues) { 
   userInfo.setUserInfo(formValues.name, formValues.info);
+}*/
+
+// функция по редактированию аватара 
+function handleProfileAvatar() {
+  popupWithFormAvatar.saveButton('Сохранение...')
+  api 
+  .editAvatarUser(avatarImg.value)
+  .then((res) => {
+    userInfo.setUserAvatar(res.avatar)
+    popupWithFormAvatar.close()
+    popupWithFormAvatar.saveButton('Сохранить')
+  })
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })
 }
 
-function handleProfileAvatar() {
-  console.log('123');
-  //userInfo.setUserAvatar(values.avatar)
+// функция по редактированию данных пользователя
+const handleProfileFormSubmit = (item) => {
+  popupWithFormEdit.saveButton('Сохранение...')
+  api
+  .editInfoUser(item.name, item.info)
+  .then((res) => {
+    userInfo.setUserInfo(res.name, res.about)
+    popupWithFormEdit.close()
+   popupWithFormEdit.saveButton('Сохранить')
+  })
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })
 }
 
 // экземляр класса с формой 
@@ -157,13 +183,14 @@ popupWithFormEdit.setEventListeners();
 const popupWithFormAvatar = new PopupWithForm('.popup-new-avatar', handleProfileAvatar);
 popupWithFormAvatar.setEventListeners();
 
+/*
 // функция отправки формы
 function handleFormSubmitCard (values) {
-  renderCard(values);
+  //renderCard(values);
   popupWithFormAdd.close();
-}
+}*/
 
-const popupWithFormAdd = new PopupWithForm('.popup-add', handleFormSubmitCard);
+const popupWithFormAdd = new PopupWithForm('.popup-add', createNewCard);
 popupWithFormAdd.setEventListeners();
 
 const userInfo = new UserInfo ({
@@ -172,40 +199,32 @@ const userInfo = new UserInfo ({
   avatar: '.profile__avatar'
 })
 
-// слушатели открытия-закрытия попапов форм
+// открытие попапа редактирования профиля
 buttonEditOpen.addEventListener('click', () => {
   profileValidation.resetValidation();
-  /*
-  userApi.getInitialCards()
-  .then((name, about, avatarImg) => {
-    userInfo.getUserInfo();
-    avatar.value = avatarImg;
-    nameInput.value = name;
-    jobInput.value = about;
-  })
-  .catch(() => {
-  console.log('Произошла ошибка'); // выведем ошибку в консоль
-  });*/
-  const {name, about, avatar} = userInfo.getUserInfo();
-
-  nameInput.value = name;
-  jobInput.value = about;
-  avatarImg.value = avatar;
+  popupWithFormEdit.checkInputList(userInfo.getUserInfo())
   popupWithFormEdit.open();
 });
 
+// обновить аватар
+buttonEditAvatar.addEventListener('click', () => { 
+  popupWithFormAvatar.open();
+})
+/*
 buttonCloseEdit.addEventListener('click', () => {
   popupWithFormEdit.close();
-});
+});*/
 
 buttonAddOpen.addEventListener('click', () => {
   addValidation.resetValidation();
   popupWithFormAdd.open();
 });
 
+
+/*
 buttonCloseAdd.addEventListener('click', () => {
   popupWithFormAdd.close();
-});
+});*/
 
 // проверка валидации для каждой формы
 const profileValidation = new FormValidator(validationConfig, profileForm);
@@ -214,7 +233,7 @@ profileValidation.enableValidation();
 const addValidation = new FormValidator(validationConfig, formElementAdd);
 addValidation.enableValidation();
 
-const avatarValidation = new FormValidator(validationConfig, formElementAdd);
+const avatarValidation = new FormValidator(validationConfig, avatarFormElement);
 avatarValidation.enableValidation();
 
 

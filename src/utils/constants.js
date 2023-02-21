@@ -5,6 +5,7 @@ const popupAdd = document.querySelector('.popup-add');
 // кнопки по открытию попапов
 export const buttonEditOpen = document.querySelector('.profile__button-edit');
 export const buttonAddOpen = document.querySelector('.profile__button-add');
+export const buttonEditAvatar = document.querySelector('.profile__avatar-container');
 
 // кнопки по закрытию попапов 
 export const buttonCloseEdit = popupEdit.querySelector('.popup__close'); 

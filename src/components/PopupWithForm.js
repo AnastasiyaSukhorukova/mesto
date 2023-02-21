@@ -7,7 +7,7 @@ export default class PopupWithForm extends Popup{
     this._handleButtonClick = handleButtonClick; // принимает в конструктор колбэк сабмита формы.
     this._form = this._popupElement.querySelector('.popup__form');
     this._inputList = this._popupElement.querySelectorAll('.popup__input'); // все элементы полей
-    this._saveButton = this._popupElement.querySelector('.popup__save-UX');
+    this._saveButton = this._popupElement.querySelector('.button__save');
   }
 
   // редактирование текста Сохранение...
@@ -33,6 +33,12 @@ export default class PopupWithForm extends Popup{
   close() {
     super.close();
     this._form.reset();
+  }
+
+  checkInputList(data) {
+    this._inputList.forEach(input => {
+      input.value = data[input.value];
+    });
   }
 
   // должен не только добавлять обработчик клика иконке закрытия, но и добавлять обработчик сабмита формы.
