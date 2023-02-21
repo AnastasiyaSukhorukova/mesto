@@ -7,6 +7,12 @@ export default class PopupWithForm extends Popup{
     this._handleButtonClick = handleButtonClick; // принимает в конструктор колбэк сабмита формы.
     this._form = this._popupElement.querySelector('.popup__form');
     this._inputList = this._popupElement.querySelectorAll('.popup__input'); // все элементы полей
+    this._saveButton = this._popupElement.querySelector('.popup__save-UX');
+  }
+
+  // редактирование текста Сохранение...
+  saveButton(save) {
+    this.__saveButton.value = save;
   }
 
   // собирает данные всех полей формы

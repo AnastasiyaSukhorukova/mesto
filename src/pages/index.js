@@ -2,7 +2,8 @@ import '../pages/index.css'; // импорт главного файла сти�
 
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
-  formInputCardLink, cardsContainer, validationConfig, elementDelete, avatarImg, avatarFormElement} from '../utils/constants.js'
+  formInputCardLink, cardsContainer, validationConfig, elementDelete, 
+  avatarImg, avatarFormElement} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -11,23 +12,88 @@ import PopupWithImage from '../components/PopupWithImage.js'
 import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js'
+
+const options = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182',
+    'Content-Type': 'application/json'
+  }
+}
+
+const api = new Api(options);
+/*
+api.getInitialCards()
+.then((initialCards) => {
+ // userId = userData._id;
+  section.renderItems(initialCards)
+})
+.catch(() => {
+  console.log('Произошла ошибка'); // выведем ошибку в консоль
+  }); */
+
+let userId;
+
+Promise.all([api.getInfoUser(), api.getInitialCards()])
+.then(([user, cardList]) => {
+  userInfo.setUserInfo(user.name, user.about)
+  userInfo.setUserAvatar(user.avatar)
+  userId = user._id
+  cardList.forEach((item) => {
+    createCard(item, userId)
+  })
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })
+})
 
 // Экземпляры классов
 const popupWithImage = new PopupWithImage('.popup-image');
 popupWithImage.setEventListeners();
 
-//let userId;
-const createCard = (item) => {  
-  const card = new Card (item, '#cards', {handleCardClick});  
+const section = new Section ({ 
+  items: [], 
+  createCard
+}, cardsContainer);
+
+// добавление новой карточки 
+const createCard = (item, userId) => {  
+  const card = new Card (item, userId, '#cards', {
+    handleCardClick: (name, link) => {
+      popupWithImage.open(name, link)
+    }, 
+    handleLikeClick: (cardId) => {
+      card.checkLikesUser()
+      ? api
+      .deleteLikeCard(cardId)
+      .then((res) => {
+        card.addLikeCard(res.likes)
+      })
+      .catch(() => {
+        console.log('Произошла ошибка') // выведем ошибку в консоль
+        })
+    : api
+    .addLikeCard(cardId)
+    .then((res) => {
+      card.addLikeCard(res.likes)
+    })
+    .catch(() => {
+      console.log('Произошла ошибка') // выведем ошибку в консоль
+      })
+    },
+    handleDeleteCards: (id, card) => {
+      popupWithDeleteCard.open(id, card)
+    }
+  }); 
+   
   const cardElement = card.generateCard();  
-  return cardElement; 
+  section.addItem(cardElement);
 } 
 
-// функция по открытию попапа с картинкой 
-const handleCardClick = (name, link) => {
-popupWithImage.open(name, link);
-} 
-
+// отражение карточек
+section.renderItems;
+/*
 function renderCard(item) {  
   api.createInitialCards(item)
   .then((item) => {
@@ -37,13 +103,41 @@ function renderCard(item) {
     console.log('Произошла ошибка'); // выведем ошибку в консоль
     }); 
   return renderCard;
-} 
+} */
 
-const section = new Section ({ 
-  renderer: (item) => {
-    section.addItem(createCard(item)); 
-  }
-}, cardsContainer);
+// добавление новой карточки
+const createNewCard = (element) => {
+  popupWithFormAdd.saveButton('Сохранение...')
+  api
+  .createNewCard(element.name, element.link)
+  .then((item) => {
+    const cardNew = createCard(item, userId)
+    popupWithFormAdd.close()
+    popupWithFormAdd.saveButton('Сохранить')
+  })
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })
+}
+
+// удаление карточки (свои можно, чужие нет)
+const deleteCardElement = (id, element) => {
+  api
+  .deleteCard(id)
+  .then((res) => {
+    popupWithDeleteCard.deleteCard()
+    popupWithDeleteCard.close()
+  })
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })
+}
+
+// создание экземляра класса для открытия попапа удаления карточки
+const popupWithDeleteCard = new PopupWithConfirmation('.popup-delete', (id, card) => {
+  deleteCardElement(id, card)
+});
+popupWithDeleteCard.setEventListeners();
 
 // функция отправки формы с инф-цией профиля
 function handleProfileFormSubmit (formValues) { 
@@ -122,32 +216,5 @@ addValidation.enableValidation();
 
 const avatarValidation = new FormValidator(validationConfig, formElementAdd);
 avatarValidation.enableValidation();
-/*
-// создание экземляра класса для открытия попапа удаления карточки
-const popupWithDeleteCard = new PopupWithConfirmation('.popup-delete');
-popupWithDeleteCard.setEventListeners();*/
-/*
-// открытие попапа удаления карточки
-elementDelete.addEventListener('click', () => {
-  popupWithDeleteCard.open();
-})*/
 
-const options = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-60',
-  headers: {
-    authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182',
-    'Content-Type': 'application/json'
-  }
-}
-
-const api = new Api(options);
-
-api.getInitialCards()
-.then((initialCards) => {
- // userId = userData._id;
-  section.renderItems(initialCards)
-})
-.catch(() => {
-  console.log('Произошла ошибка'); // выведем ошибку в консоль
-  }); 
 
