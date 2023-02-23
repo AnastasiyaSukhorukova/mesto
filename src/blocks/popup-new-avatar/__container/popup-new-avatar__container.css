@@ -8,3 +8,10 @@
   height: 272px;
   background-color: #fff;
 }
+
+@media screen and (max-width: 544px) {
+  .popup-new-avatar__container {
+    max-width: 305px;
+    min-height: 290px;
+  }
+}

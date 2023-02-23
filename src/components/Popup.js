@@ -24,7 +24,7 @@ export default class Popup {
   }
 
   _handleOverlayClick = (evt) => {
-    if (!evt.target.closest('.popup__container')) {
+    if (!evt.target.closest('.popup__container') && (!evt.target.closest('.popup-new-avatar__container'))) {
       this.close();
     }
   }

@@ -53,14 +53,14 @@ export default class Api {
     .then(handleResponse);
   }
 
-  // редактирование данных пользователя с сервера
+  // редактирование данных пользователя 
   editInfoUser(data) {
     return fetch(`${this.url}/users/me`, {
       method: 'PATCH',
       headers: this.headers, 
       body: JSON.stringify({
         name: data.name,
-        link: data.link
+        about: data.about
       })
     })  
     .then(handleResponse);

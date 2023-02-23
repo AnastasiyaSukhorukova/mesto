@@ -10,6 +10,7 @@ export const buttonEditAvatar = document.querySelector('.profile__avatar-contain
 // кнопки по закрытию попапов 
 export const buttonCloseEdit = popupEdit.querySelector('.popup__close'); 
 export const buttonCloseAdd = popupAdd.querySelector('.popup__close'); 
+export const buttonCloseAvatar = buttonEditAvatar.querySelector('.popup__close'); 
 
 // переменные для хранения информации в попапах и формах
 

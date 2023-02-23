@@ -3,7 +3,7 @@ import '../pages/index.css'; // импорт главного файла сти�
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
   formInputCardLink, cardsContainer, validationConfig, elementDelete, 
-  avatarImg, avatarFormElement, buttonEditAvatar} from '../utils/constants.js'
+  avatarImg, avatarFormElement, buttonEditAvatar, buttonCloseAvatar} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -43,8 +43,8 @@ Promise.all([api.getInfoUser(), api.getInitialCards()])
   initialCards.forEach((item) => {
     createCard(item, userId)
   })
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
+  .catch((err) => {
+    console.log(err) // выведем ошибку в консоль
     })
 })
 
@@ -106,10 +106,10 @@ function renderCard(item) {
 } */
 
 // добавление новой карточки
-const createNewCard = (element) => {
+const createNewCard = (card) => {
   popupWithFormAdd.saveButton('Сохранение...')
   api
-  .createNewCard(element.name, element.link)
+  .createNewCard(card.name, card.link)
   .then((item) => {
     const cardNew = createCard(item, userId)
     popupWithFormAdd.close()
@@ -164,7 +164,7 @@ function handleProfileAvatar() {
 const handleProfileFormSubmit = (item) => {
   popupWithFormEdit.saveButton('Сохранение...')
   api
-  .editInfoUser(item.name, item.info)
+  .editInfoUser(item.name, item.about)
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about)
     popupWithFormEdit.close()
@@ -206,25 +206,29 @@ buttonEditOpen.addEventListener('click', () => {
   popupWithFormEdit.open();
 });
 
+buttonCloseEdit.addEventListener('click', () => {
+  popupWithFormEdit.close();
+});
+
 // обновить аватар
 buttonEditAvatar.addEventListener('click', () => { 
+  avatarValidation.resetValidation();
   popupWithFormAvatar.open();
 })
 /*
-buttonCloseEdit.addEventListener('click', () => {
-  popupWithFormEdit.close();
-});*/
+buttonCloseAvatar.addEventListener('click', () => {
+  popupWithFormAvatar.close();
+});
+*/
 
 buttonAddOpen.addEventListener('click', () => {
   addValidation.resetValidation();
   popupWithFormAdd.open();
 });
 
-
-/*
 buttonCloseAdd.addEventListener('click', () => {
   popupWithFormAdd.close();
-});*/
+});
 
 // проверка валидации для каждой формы
 const profileValidation = new FormValidator(validationConfig, profileForm);

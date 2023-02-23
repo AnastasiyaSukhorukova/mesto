@@ -13,6 +13,8 @@ export default class Card {
     this._handleDeleteCards = handleDeleteCards;
     this._ownerId = cardsData.owner._id; // выясняем id пользователя
     this._cardId = cardsData._id;
+    this._newCard = this._getTemplate();
+    this._likeAmount = this._newCard.querySelector('.element__like-number');
   }
 
   // возвращаем ID карточки
@@ -47,8 +49,8 @@ export default class Card {
     this._elementImg.alt = this._name;
     this._elementImg.src = this._link;
 
-    this._likeAmount.textContent = this._like.length;
-    this.addLike(this._like);
+    //this._likeAmount.textContent = this._like.length;
+    //this.addLikeCard(this._like);
 
     // если карточка создана не мной то скрыть элемент корзины
     if (this._ownerId !== this._userId) {
