@@ -3,7 +3,7 @@ import '../pages/index.css'; // импорт главного файла сти�
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
   formInputCardLink, cardsContainer, validationConfig, elementDelete, 
-  avatarImg, avatarFormElement, buttonEditAvatar, buttonCloseAvatar} from '../utils/constants.js'
+  avatarImg, avatarFormElement, buttonEditAvatar, buttonCloseAvatar, popupAvatar} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -22,7 +22,7 @@ const options = {
   }
 }
 
-const api = new Api(options);
+const api = new Api (options);
 /*
 api.getInitialCards()
 .then((initialCards) => {
@@ -43,9 +43,10 @@ Promise.all([api.getInfoUser(), api.getInitialCards()])
   initialCards.forEach((item) => {
     createCard(item, userId)
   })
-  .catch((err) => {
-    console.log(err) // выведем ошибку в консоль
-    })
+  /*
+  .catch(() => {
+    console.log('Произошла ошибка') // выведем ошибку в консоль
+    })*/
 })
 
 // Экземпляры классов
@@ -93,23 +94,12 @@ const createCard = (item, userId) => {
 
 // отражение карточек
 section.renderItems;
-/*
-function renderCard(item) {  
-  api.createInitialCards(item)
-  .then((item) => {
-    section.addItem(createCard(item))
-  })  
-  .catch(() => {
-    console.log('Произошла ошибка'); // выведем ошибку в консоль
-    }); 
-  return renderCard;
-} */
 
 // добавление новой карточки
 const createNewCard = (card) => {
   popupWithFormAdd.saveButton('Сохранение...')
   api
-  .createNewCard(card.name, card.link)
+  .createInitialCards(card.name, card.link)
   .then((item) => {
     const cardNew = createCard(item, userId)
     popupWithFormAdd.close()
@@ -139,12 +129,6 @@ const popupWithDeleteCard = new PopupWithConfirmation('.popup-delete', (id, card
 });
 popupWithDeleteCard.setEventListeners();
 
-/*
-// функция отправки формы с инф-цией профиля
-function handleProfileFormSubmit (formValues) { 
-  userInfo.setUserInfo(formValues.name, formValues.info);
-}*/
-
 // функция по редактированию аватара 
 function handleProfileAvatar() {
   popupWithFormAvatar.saveButton('Сохранение...')
@@ -166,6 +150,7 @@ const handleProfileFormSubmit = (item) => {
   api
   .editInfoUser(item.name, item.about)
   .then((res) => {
+    //console.log(res.name, res.about)
     userInfo.setUserInfo(res.name, res.about)
     popupWithFormEdit.close()
    popupWithFormEdit.saveButton('Сохранить')
@@ -182,13 +167,6 @@ popupWithFormEdit.setEventListeners();
 // экземляр класса с формой 
 const popupWithFormAvatar = new PopupWithForm('.popup-new-avatar', handleProfileAvatar);
 popupWithFormAvatar.setEventListeners();
-
-/*
-// функция отправки формы
-function handleFormSubmitCard (values) {
-  //renderCard(values);
-  popupWithFormAdd.close();
-}*/
 
 const popupWithFormAdd = new PopupWithForm('.popup-add', createNewCard);
 popupWithFormAdd.setEventListeners();
@@ -215,11 +193,11 @@ buttonEditAvatar.addEventListener('click', () => {
   avatarValidation.resetValidation();
   popupWithFormAvatar.open();
 })
-/*
+
 buttonCloseAvatar.addEventListener('click', () => {
   popupWithFormAvatar.close();
 });
-*/
+
 
 buttonAddOpen.addEventListener('click', () => {
   addValidation.resetValidation();

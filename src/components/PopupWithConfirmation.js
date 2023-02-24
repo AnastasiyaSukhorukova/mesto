@@ -9,7 +9,7 @@ export default class PopupWithConfirmation extends Popup{
     this._buttonSave = this._popupElement.querySelector('.popup__save');
   }
 
-  open() {
+  open(id, card) {
     super.open()
     this._id = id;
     this._cardElement = card;
@@ -17,7 +17,6 @@ export default class PopupWithConfirmation extends Popup{
 
   setEventListeners() {
     this._formElement.addEventListener('click', () => {
-      evt.preventDefault();
       this._handleDeleteCard(this._id, this._cardElement)
     });
     super.setEventListeners();

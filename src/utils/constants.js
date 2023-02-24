@@ -1,6 +1,7 @@
 // переменные попапов 
 const popupEdit = document.querySelector('.profile-popup');
 const popupAdd = document.querySelector('.popup-add');
+export const popupAvatar = document.querySelector('.popup-new-avatar')
 
 // кнопки по открытию попапов
 export const buttonEditOpen = document.querySelector('.profile__button-edit');
@@ -10,7 +11,7 @@ export const buttonEditAvatar = document.querySelector('.profile__avatar-contain
 // кнопки по закрытию попапов 
 export const buttonCloseEdit = popupEdit.querySelector('.popup__close'); 
 export const buttonCloseAdd = popupAdd.querySelector('.popup__close'); 
-export const buttonCloseAvatar = buttonEditAvatar.querySelector('.popup__close'); 
+export const buttonCloseAvatar = popupAvatar.querySelector('.popup__close'); 
 
 // переменные для хранения информации в попапах и формах
 

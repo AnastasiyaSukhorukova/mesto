@@ -15,6 +15,7 @@ export default class Card {
     this._cardId = cardsData._id;
     this._newCard = this._getTemplate();
     this._likeAmount = this._newCard.querySelector('.element__like-number');
+    this._likeButton = this._newCard.querySelector('.element__like'); 
   }
 
   // возвращаем ID карточки
@@ -41,7 +42,6 @@ export default class Card {
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
     this._btnDeleteCard = this._newCard.querySelector('.element__delete'); // кнопка удаления карточки 
-    this._likeButton = this._newCard.querySelector('.element__like'); 
 
     this._setEventListeners(); 
 
@@ -49,8 +49,8 @@ export default class Card {
     this._elementImg.alt = this._name;
     this._elementImg.src = this._link;
 
-    //this._likeAmount.textContent = this._like.length;
-    //this.addLikeCard(this._like);
+    this._likeAmount.textContent = this._like.length;
+    this.addLikeCard(this._like);
 
     // если карточка создана не мной то скрыть элемент корзины
     if (this._ownerId !== this._userId) {

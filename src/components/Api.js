@@ -12,24 +12,24 @@ const handleResponse = (res) => {
 
 export default class Api {
   constructor(options) {
-    this.url = options.url;
-    this.headers = options.headers;
+    this._url = options.url;
+    this._headers = options.headers;
   }
 
   // Получение карточки
   getInitialCards() {
-    return fetch(`${this.url}/cards`, {headers: this.headers}) 
+    return fetch(`${this._url}/cards`, {headers: this._headers}) 
     .then(handleResponse);
   }
 
   // создание карточек
-  createInitialCards(data) {
-    return fetch(`${this.url}/cards`, {
+  createInitialCards(name, link) {
+    return fetch(`${this._url}/cards`, {
       method: 'POST',
-      headers: this.headers, 
+      headers: this._headers, 
       body: JSON.stringify({
-        name: data.name,
-        link: data.link
+        name: name,
+        link: link
       })
     })  
     .then(handleResponse);
@@ -37,30 +37,30 @@ export default class Api {
 
   // удаление карточки
   deleteCard(cardId) {
-    return fetch(`${this.url}/cards/${cardId}`, {
+    return fetch(`${this._url}/cards/${cardId}`, {
       method: 'DELETE',
-      headers: this.headers
+      headers: this._headers
     })  
     .then(handleResponse);
   }
 
   // получение данных о пользователе с сервера
   getInfoUser() {
-    return fetch(`${this.url}/users/me`, {
+    return fetch(`${this._url}/users/me`, {
       method: 'GET',
-      headers: this.headers, 
+      headers: this._headers, 
     })  
     .then(handleResponse);
   }
 
   // редактирование данных пользователя 
-  editInfoUser(data) {
-    return fetch(`${this.url}/users/me`, {
+  editInfoUser(name, about) {
+     return fetch(`${this._url}/users/me`, {
       method: 'PATCH',
-      headers: this.headers, 
+      headers: this._headers, 
       body: JSON.stringify({
-        name: data.name,
-        about: data.about
+        name: name,
+        about: about
       })
     })  
     .then(handleResponse);
@@ -68,9 +68,9 @@ export default class Api {
 
   // изменение аватара
   editAvatarUser(url) {
-    return fetch(`${this.url}/users/me/avatar`, {
+    return fetch(`${this._url}/users/me/avatar`, {
       method: 'PATCH',
-      headers: this.headers, 
+      headers: this._headers, 
       body: JSON.stringify({
         avatar: url
       })
@@ -80,18 +80,18 @@ export default class Api {
 
   // Поставить лайк
   addLikeCard(cardId) {
-    return fetch(`${this.url}/cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'PUT',
-      headers: this.headers, 
+      headers: this._headers, 
     })  
     .then(handleResponse);
   }
 
   // Убрать лайк
   deleteLikeCard(cardId) {
-    return fetch(`${this.url}/cards/${cardId}/likes`, {
+    return fetch(`${this._url}/cards/${cardId}/likes`, {
       method: 'DELETE',
-      headers: this.headers, 
+      headers: this._headers, 
     })  
     .then(handleResponse);
   }
