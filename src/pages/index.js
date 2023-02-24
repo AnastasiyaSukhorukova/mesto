@@ -23,16 +23,7 @@ const options = {
 }
 
 const api = new Api (options);
-/*
-api.getInitialCards()
-.then((initialCards) => {
- // userId = userData._id;
-  section.renderItems(initialCards)
-})
-.catch(() => {
-  console.log('Произошла ошибка'); // выведем ошибку в консоль
-  }); 
-*/
+
 let userId;
 
 Promise.all([api.getInfoUser(), api.getInitialCards()])
@@ -69,7 +60,7 @@ const createCard = (item, userId) => {
       ? api
       .deleteLikeCard(cardId)
       .then((res) => {
-        card.addLikeCard(res.likes)
+        card.addLikeCardUser(res.likes)
       })
       .catch(() => {
         console.log('Произошла ошибка') // выведем ошибку в консоль
@@ -77,7 +68,7 @@ const createCard = (item, userId) => {
     : api
     .addLikeCard(cardId)
     .then((res) => {
-      card.addLikeCard(res.likes)
+      card.addLikeCardUser(res.likes)
     })
     .catch(() => {
       console.log('Произошла ошибка') // выведем ошибку в консоль
@@ -150,10 +141,9 @@ const handleProfileFormSubmit = (item) => {
   api
   .editInfoUser(item.name, item.about)
   .then((res) => {
-    //console.log(res.name, res.about)
     userInfo.setUserInfo(res.name, res.about)
     popupWithFormEdit.close()
-   popupWithFormEdit.saveButton('Сохранить')
+    popupWithFormEdit.saveButton('Сохранить')
   })
   .catch(() => {
     console.log('Произошла ошибка') // выведем ошибку в консоль
@@ -181,6 +171,11 @@ const userInfo = new UserInfo ({
 buttonEditOpen.addEventListener('click', () => {
   profileValidation.resetValidation();
   popupWithFormEdit.checkInputList(userInfo.getUserInfo())
+  
+  const {name, about} = userInfo.getUserInfo();
+  nameInput.value = name; 
+  jobInput.value = about;
+
   popupWithFormEdit.open();
 });
 

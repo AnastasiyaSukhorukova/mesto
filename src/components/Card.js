@@ -5,7 +5,7 @@ export default class Card {
   constructor(cardsData, userId, templateSelector, {handleCardClick, handleLikeClick, handleDeleteCards}) {
     this._name = cardsData.name;
     this._link = cardsData.link;
-    this._like = cardsData.like;
+    this._likes = cardsData.likes;
     this._userId = userId; // текущий id (мой)
     this._templateSelector = templateSelector;
     this._handleCardClick = handleCardClick;
@@ -14,8 +14,6 @@ export default class Card {
     this._ownerId = cardsData.owner._id; // выясняем id пользователя
     this._cardId = cardsData._id;
     this._newCard = this._getTemplate();
-    this._likeAmount = this._newCard.querySelector('.element__like-number');
-    this._likeButton = this._newCard.querySelector('.element__like'); 
   }
 
   // возвращаем ID карточки
@@ -42,34 +40,38 @@ export default class Card {
     this._titleImg = this._newCard.querySelector('.element__title'); // название картинки
     this._elementImg = this._newCard.querySelector('.element__image'); // ссылка на картинку
     this._btnDeleteCard = this._newCard.querySelector('.element__delete'); // кнопка удаления карточки 
+    this._likeButton = this._newCard.querySelector('.element__like'); 
+    this._likeAmount = this._newCard.querySelector('.element__like-number');
 
     this._setEventListeners(); 
 
     this._titleImg.textContent = this._name;
     this._elementImg.alt = this._name;
     this._elementImg.src = this._link;
-
-    this._likeAmount.textContent = this._like.length;
-    this.addLikeCard(this._like);
+  
+    this._likeAmount.textContent = this._likes.length;
 
     // если карточка создана не мной то скрыть элемент корзины
     if (this._ownerId !== this._userId) {
       this._btnDeleteCard.style.display = 'none'
     }
 
+    this.addLikeCardUser(this._likes);
+
     return this._newCard;
   }
 
   // проверяем лайки пользователя
   checkLikesUser() {
-    return this._like.find((like) => { // возвращает значение первого найденного в массиве элемента
-      return like._id === this._userId; // присваиваем id лайка текущему пользователю 
+      return this._likes.some((like) => { // возвращает true/false
+      return like._id === this._userId; // проверка id
     })
   }
 
-  // закрашивание и удаление закрышивания лайка
+  // закрашивание и удаление закрашивания лайка
   checklikeCard() {
-    if(this.checkLikesUser()) {
+    //console.log(this.checkLikesUser())
+    if(this.checkLikesUser(true)){
       this._likeButton.classList.add('element__like_active')
     } else {
       this._likeButton.classList.remove('element__like_active')
@@ -77,18 +79,11 @@ export default class Card {
   }
 
   // поставить лайк
-  addLikeCard(likes) {
-    this._like = likes;
-    this._likeAmount.textContent = this._like.length;
+  addLikeCardUser(likes) {
+    this._likes = likes;
+    this._likeAmount.textContent = this._likes.length;
     this.checklikeCard();
   }
-/*
-  // функция удаления карточек
-  _handleDeleteCards() {
-    this._newCard.remove();
-    // Метод remove удаляет только разметку из html, но объект карточки остается в памяти приложения и потребляет ресурсы, занулили
-    this._newCard = null;
-}*/
 
   _setEventListeners() {
   // переменная и слушатель на кнопку удалить (на подтверждение) и лайк
@@ -96,9 +91,8 @@ export default class Card {
     this._handleDeleteCards()
   })
 
-    this._likeButton.addEventListener('click', () => {
-      this._handleLikeClick(this._cardId);
-      this.checkLikeCard();
+  this._likeButton.addEventListener('click', () => {
+    this._handleLikeClick(this._cardId);
     })
 
   // открытие картинки на весь экран

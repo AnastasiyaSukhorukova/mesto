@@ -51,8 +51,6 @@ export default class PopupWithForm extends Popup{
       // добавим вызов функции _handleButtonClick
       // передадим ей объект — результат работы _getInputValues
      this._handleButtonClick(this._getInputValues());
-  
-     this.close();
     });
   }
 }
