@@ -1,14 +1,4 @@
 //описаны запросы к серверу
-// options опишем в корневом файле нашего приложения
-// 'https://mesto.nomoreparties.co/v1/cohort-60/cards'
-// authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182'
-
-const handleResponse = (res) => {
-  if(res.ok) {
-    return res.json();
-  }
-  return Promise.reject(`Ошибка: ${res.status}`)
-}
 
 export default class Api {
   constructor(options) {
@@ -16,10 +6,17 @@ export default class Api {
     this._headers = options.headers;
   }
 
+  _handleResponse(res) {
+    if(res.ok) {
+    return res.json();
+  }
+  return Promise.reject(`Ошибка: ${res.status}`)
+  }
+
   // Получение карточки
   getInitialCards() {
     return fetch(`${this._url}/cards`, {headers: this._headers}) 
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // создание карточек
@@ -32,7 +29,7 @@ export default class Api {
         link: link
       })
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // удаление карточки
@@ -41,7 +38,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // получение данных о пользователе с сервера
@@ -50,7 +47,7 @@ export default class Api {
       method: 'GET',
       headers: this._headers, 
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // редактирование данных пользователя 
@@ -63,7 +60,7 @@ export default class Api {
         about: about
       })
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // изменение аватара
@@ -75,7 +72,7 @@ export default class Api {
         avatar: url
       })
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // Поставить лайк
@@ -84,7 +81,7 @@ export default class Api {
       method: 'PUT',
       headers: this._headers, 
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
 
   // Убрать лайк
@@ -93,7 +90,7 @@ export default class Api {
       method: 'DELETE',
       headers: this._headers, 
     })  
-    .then(handleResponse);
+    .then(this._handleResponse);
   }
   
 }

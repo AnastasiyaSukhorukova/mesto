@@ -12,8 +12,8 @@ export default class Section {
   }
 
   // Содержит публичный метод, который отвечает за отрисовку всех элементов
-  renderItems(items) {
-    items.forEach((item) => {
+  renderItems(cards) {
+    cards.reverse().forEach(item => {
       this._renderer(item);
     });
   }

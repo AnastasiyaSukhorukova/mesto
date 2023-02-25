@@ -37,7 +37,7 @@ export default class PopupWithForm extends Popup{
 
   checkInputList(data) {
     this._inputList.forEach(input => {
-      input.value = data[input.value];
+      input = data[input.value];
     });
   }
 

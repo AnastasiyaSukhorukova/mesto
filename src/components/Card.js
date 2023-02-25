@@ -70,7 +70,6 @@ export default class Card {
 
   // закрашивание и удаление закрашивания лайка
   checklikeCard() {
-    //console.log(this.checkLikesUser())
     if(this.checkLikesUser(true)){
       this._likeButton.classList.add('element__like_active')
     } else {
@@ -86,10 +85,6 @@ export default class Card {
   }
 
   _setEventListeners() {
-  // переменная и слушатель на кнопку удалить (на подтверждение) и лайк
-  this._btnDeleteCard.addEventListener('click', () => {
-    this._handleDeleteCards()
-  })
 
   this._likeButton.addEventListener('click', () => {
     this._handleLikeClick(this._cardId);

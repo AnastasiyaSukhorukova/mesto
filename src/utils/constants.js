@@ -1,3 +1,11 @@
+export const options = {
+  url: 'https://mesto.nomoreparties.co/v1/cohort-60',
+  headers: {
+    authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182',
+    'Content-Type': 'application/json'
+  }
+}
+
 // переменные попапов 
 const popupEdit = document.querySelector('.profile-popup');
 const popupAdd = document.querySelector('.popup-add');

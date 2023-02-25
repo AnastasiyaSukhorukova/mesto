@@ -3,7 +3,7 @@ import '../pages/index.css'; // импорт главного файла сти�
 import {buttonEditOpen, buttonAddOpen, buttonCloseEdit, buttonCloseAdd, 
   profileForm, formElementAdd, nameInput, jobInput, formInputCardName, 
   formInputCardLink, cardsContainer, validationConfig, elementDelete, 
-  avatarImg, avatarFormElement, buttonEditAvatar, buttonCloseAvatar, popupAvatar} from '../utils/constants.js'
+  avatarImg, avatarFormElement, buttonEditAvatar, buttonCloseAvatar, popupAvatar, options} from '../utils/constants.js'
 
 import Card from '../components/Card.js'
 import FormValidator from '../components/FormValidator.js'
@@ -13,14 +13,6 @@ import PopupWithForm from '../components/PopupWithForm.js'
 import UserInfo from '../components/UserInfo.js'
 import Api from '../components/Api.js'
 import PopupWithConfirmation from '../components/PopupWithConfirmation.js'
-
-const options = {
-  url: 'https://mesto.nomoreparties.co/v1/cohort-60',
-  headers: {
-    authorization: 'f1b678bd-8daa-4ddc-9a95-4730e9a93182',
-    'Content-Type': 'application/json'
-  }
-}
 
 const api = new Api (options);
 
@@ -34,11 +26,10 @@ Promise.all([api.getInfoUser(), api.getInitialCards()])
   initialCards.forEach((item) => {
     createCard(item, userId)
   })
-  /*
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
-    })*/
 })
+.catch((err) => {
+  console.log(err); // выведем ошибку в консоль
+  });
 
 // Экземпляры классов
 const popupWithImage = new PopupWithImage('.popup-image');
@@ -70,9 +61,9 @@ const createCard = (item, userId) => {
     .then((res) => {
       card.addLikeCardUser(res.likes)
     })
-    .catch(() => {
-      console.log('Произошла ошибка') // выведем ошибку в консоль
-      })
+    .catch((err) => {
+      console.log(err); // выведем ошибку в консоль
+      });
     },
     handleDeleteCards: (id, card) => {
       popupWithDeleteCard.open(id, card)
@@ -94,11 +85,13 @@ const createNewCard = (card) => {
   .then((item) => {
     const cardNew = createCard(item, userId)
     popupWithFormAdd.close()
-    popupWithFormAdd.saveButton('Сохранить')
   })
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
     })
+  .finally(() => {
+    popupWithFormAdd.saveButton('Сохранить')
+  });
 }
 
 // удаление карточки (свои можно, чужие нет)
@@ -109,8 +102,8 @@ const deleteCardElement = (id, element) => {
     popupWithDeleteCard.deleteCard()
     popupWithDeleteCard.close()
   })
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
     })
 }
 
@@ -128,11 +121,13 @@ function handleProfileAvatar() {
   .then((res) => {
     userInfo.setUserAvatar(res.avatar)
     popupWithFormAvatar.close()
-    popupWithFormAvatar.saveButton('Сохранить')
   })
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
     })
+  .finally(() => {
+    popupWithFormAvatar.saveButton('Сохранить')
+  });
 }
 
 // функция по редактированию данных пользователя
@@ -143,11 +138,13 @@ const handleProfileFormSubmit = (item) => {
   .then((res) => {
     userInfo.setUserInfo(res.name, res.about)
     popupWithFormEdit.close()
-    popupWithFormEdit.saveButton('Сохранить')
   })
-  .catch(() => {
-    console.log('Произошла ошибка') // выведем ошибку в консоль
+  .catch((err) => {
+    console.log(err); // выведем ошибку в консоль
     })
+  .finally(() => {
+    popupWithFormEdit.saveButton('Сохранить')
+  });
 }
 
 // экземляр класса с формой 
@@ -171,37 +168,32 @@ const userInfo = new UserInfo ({
 buttonEditOpen.addEventListener('click', () => {
   profileValidation.resetValidation();
   popupWithFormEdit.checkInputList(userInfo.getUserInfo())
-  
-  const {name, about} = userInfo.getUserInfo();
-  nameInput.value = name; 
-  jobInput.value = about;
-
   popupWithFormEdit.open();
 });
-
+/*
 buttonCloseEdit.addEventListener('click', () => {
   popupWithFormEdit.close();
-});
+});*/
 
 // обновить аватар
 buttonEditAvatar.addEventListener('click', () => { 
   avatarValidation.resetValidation();
   popupWithFormAvatar.open();
 })
-
+/*
 buttonCloseAvatar.addEventListener('click', () => {
   popupWithFormAvatar.close();
-});
+});*/
 
 
 buttonAddOpen.addEventListener('click', () => {
   addValidation.resetValidation();
   popupWithFormAdd.open();
 });
-
+/*
 buttonCloseAdd.addEventListener('click', () => {
   popupWithFormAdd.close();
-});
+});*/
 
 // проверка валидации для каждой формы
 const profileValidation = new FormValidator(validationConfig, profileForm);
